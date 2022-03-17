@@ -1,6 +1,18 @@
-# mapeo-icons
+# Mapeo icons
+
+A simple API and GUI for translating search terms, and scraping them from icon repositories. It's meant to work with [Mapeo](https://mapeo.app), so it it also let's user choose icon colors, and renames them according to Mapeo configuration standards.
 
 ## Build Setup
+
+First start with an .env file:
+
+```
+cp .env.example .env
+```
+
+Then get [The Noun Project](https://thenounproject.com/) API key and secret and set them on the `.env` file.
+
+Finally:
 
 ```bash
 # install dependencies
