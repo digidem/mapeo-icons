@@ -9,7 +9,10 @@
         href="https://mapeo.app"
         target="_blank"
       >
-        <!-- LOGO HERE -->
+        <div class="text-white">
+          <p style="background: #33f" class="pl-2 pt-2 w-80px">Digital</p>
+          <p style="background: #33f" class="pl-2 pb-2 w-110px">Democracy</p>
+        </div>
       </a>
       <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">
         <div class="flex flex-row">
@@ -21,18 +24,23 @@
           </select>
         </div>
         <div class="mt-4 pt-4 text-gray-800 border-t border-dashed">
+          <p>{{ $t('enter-search') }}</p>
           <input
             v-model="term"
-            class="border-solid border-1px rounded-lg border-red-300 pl-4"
+            class="border-solid border-1px rounded-lg border-red-300 py-4 pl-4"
             type="text"
             aria-label="term"
           />
-          <NuxtLink
-            class="uppercase bg-bg-green-600 py-4 px-8 mt-4"
-            :to="`/images?s=${term}`"
-          >
-            {{ $t('search') }}
+          <NuxtLink :to="localePath(`/images?s=${term}&l=${locale}`)">
+            <button
+              :disabled="loading"
+              class="uppercase bg-green-400 py-4 px-8 mt-4 rounded-xl"
+              @click="loading = true"
+            >
+              {{ $t(loading ? 'loading' : 'search') }}
+            </button>
           </NuxtLink>
+          <p v-if="error" class="text-red-500">{{ $t('error') }}!</p>
         </div>
       </div>
       <footer />
@@ -42,10 +50,17 @@
 <script>
 export default {
   name: 'NuxtTutorial',
+  props: {
+    error: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       locale: this.$i18n.getLocaleCookie() || this.$i18n.defaultLocale,
       term: '',
+      loading: false,
     }
   },
   methods: {

@@ -8,9 +8,9 @@ function sleep(ms) {
   })
 }
 
-async function runTranslate(searchTerm) {
+async function runTranslate(searchTerm, locale) {
   try {
-    const translation = await translate(searchTerm, { from: 'pt', to: 'en' })
+    const translation = await translate(searchTerm, { from: locale, to: 'en' })
     return translation.text
   } catch (err) {
     console.log('ERROR on translation', err)
@@ -21,7 +21,7 @@ async function runTranslate(searchTerm) {
   }
 }
 
-module.exports = async (searchTerm) => {
+module.exports = async (searchTerm, locale) => {
   /* LibreTranslate, doesn't work well */
   // const { IDIOM } = process.env;
   // const res = await fetch("https://libretranslate.com/translate", {
@@ -35,11 +35,10 @@ module.exports = async (searchTerm) => {
   // });
   // const json = await res.json();
 
-  // console.log("🚀 ~ file: translate.js ~ line 16 ~ module.exports= ~ json", json)
   // if (json.error) {
   //   throw Error(json.error)
   // }
   // const text = json.translatedText;
   // return text;
-  return await runTranslate(searchTerm)
+  return await runTranslate(searchTerm, locale)
 }
