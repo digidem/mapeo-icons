@@ -23,7 +23,7 @@
             <option value="en">English</option>
           </select>
         </div>
-        <div class="mt-4 pt-4 text-gray-800 border-t border-dashed">
+        <form class="mt-4 pt-4 text-gray-800 border-t border-dashed">
           <p>{{ $t('enter-search') }}</p>
           <input
             v-model="term"
@@ -41,7 +41,7 @@
             </button>
           </NuxtLink>
           <p v-if="error" class="text-red-500">{{ $t('error') }}!</p>
-        </div>
+        </form>
       </div>
       <footer />
     </div>
