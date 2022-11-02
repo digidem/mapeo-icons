@@ -9,11 +9,12 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.get('/search', async function (req, res, next) {
-  const { s = 'tree', l = 'pt' } = req.query
+  const { s = 'tree', l = 'pt', p = '1' } = req.query
   try {
-    const data = await search(s, l)
+    const data = await search(s, l, parseInt(p))
     res.json(data)
   } catch (err) {
+    console.error(err)
     next(new Error(err.data))
   }
 })
