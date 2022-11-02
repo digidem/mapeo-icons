@@ -3,7 +3,8 @@ const translate = require('./translate')
 
 module.exports = async (noun, locale) => {
   if (!noun || typeof noun !== 'string') throw Error
-  const translation = await translate(noun, locale)
+  translation = noun
+  if (locale !== 'en') translation = await translate(noun, locale)
   console.log('Downloading translated: ', translation)
   const { NOUN_KEY, NOUN_SECRET, ICONS_TO_DOWNLOAD } = process.env
   const resLimit = parseInt(ICONS_TO_DOWNLOAD)
@@ -19,12 +20,12 @@ module.exports = async (noun, locale) => {
     'HMAC-SHA1'
   )
   const fetch = (url) =>
-    new Promise((resolve) => {
+    new Promise((resolve, reject) => {
       oauth.get(url, null, null, (e, data) => {
         if (e) {
           console.log('Got error on fetching', url)
           console.error(e)
-          resolve(false)
+          reject(e)
         } else {
           const json = JSON.parse(data)
           resolve(json)

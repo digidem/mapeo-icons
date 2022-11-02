@@ -8,10 +8,14 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.get('/search', async function (req, res) {
+app.get('/search', async function (req, res, next) {
   const { s = 'tree', l = 'pt' } = req.query
-  const data = await search(s, l)
-  res.json(data)
+  try {
+    const data = await search(s, l)
+    res.json(data)
+  } catch (err) {
+    next(new Error(err.data))
+  }
 })
 
 app.get('/generate', async function (req, res) {
