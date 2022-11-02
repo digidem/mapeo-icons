@@ -27,7 +27,7 @@
           </div>
         </div>
         <div
-          class="flex flex-col text-gray-800 md:border-t md:border-dashed fixed md:static bottom-4 md:bottom-0 md:flex-row md:justify-around items-center"
+          class="flex flex-col text-gray-800 md:border-t md:border-dashed fixed right-0.5 left-0.5 md:static bottom-4 md:bottom-0 md:flex-row md:justify-around items-center"
         >
           <button
             :disabled="loadingMore"
@@ -124,3 +124,13 @@ export default Vue.extend({
   },
 })
 </script>
+<style>
+.vc-chrome-toggle-btn,
+.vc-chrome-alpha-wrap {
+  display: none;
+}
+
+.vc-chrome-controls {
+  align-items: end !important;
+}
+</style>
