@@ -57,6 +57,7 @@ export default {
           error: "we couldn't find any icons with those terms",
           'save-images': 'Select the images below to download them',
           'search-again': 'Do another search',
+          generate: 'Generate',
         },
         pt: {
           welcome: 'Bem vindo',
@@ -69,6 +70,7 @@ export default {
           'save-images': 'Selecione as imagens a baixo para salva-las',
           error: 'não encontramos nenhum ícone com esses termos',
           'search-again': 'Fazer outra busca',
+          generate: 'Gerar',
         },
         es: {
           welcome: 'Bienvenido',
@@ -81,6 +83,7 @@ export default {
           error: 'no pudimos encontrar ningún ícono con esos términos',
           'save-images': 'Seleccione las imágenes a bajo para guardarlas',
           'search-again': 'Hacer otra busca',
+          generate: 'Generar',
         },
       },
     },

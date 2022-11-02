@@ -10,7 +10,7 @@ First start with an .env file:
 cp .env.example .env
 ```
 
-Then get [The Noun Project](https://thenounproject.com/) API key and secret and set them on the `.env` file.
+Then get [The Noun Project](https://thenounproject.com/developers/apps/) API key and secret and set them on the `.env` file.
 
 Finally:
 
