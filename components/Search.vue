@@ -4,16 +4,14 @@
     class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0"
   >
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-      <a
-        class="flex justify-center pt-8 sm:pt-0"
-        href="https://mapeo.app"
-        target="_blank"
-      >
-        <div class="text-white">
-          <p style="background: #33f" class="pl-2 pt-2 w-80px">Digital</p>
-          <p style="background: #33f" class="pl-2 pb-2 w-110px">Democracy</p>
+        <div class="max-w-lg mx-auto sm:px-1 lg:px-2 mb-5">
+          <img src="/logo.webp">
         </div>
-      </a>
+        <div class="text-center">
+          <h1 class="font-bold text-4xl mb-5">{{ $t('title') }}</h1>
+          <p class="mb-5">{{ $t('description') }}</p>
+          <p class="mb-5">{{ $t('config') }} <a href="" target="_blank" class="underline">{{ $t('link') }}</a></p>
+        </div>
       <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">
         <div class="flex flex-row">
           <h2 class="text-2xl leading-7 font-semibold">{{ $t('welcome') }}</h2>
