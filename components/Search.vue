@@ -10,8 +10,7 @@
         target="_blank"
       >
         <div class="text-white">
-          <p style="background: #33f" class="pl-2 pt-2 w-80px">Digital</p>
-          <p style="background: #33f" class="pl-2 pb-2 w-110px">Democracy</p>
+          <img src="https://www.earthdefenderstoolkit.com/wp-content/uploads/2020/12/EDT-asset-light-logo.png"></img>
         </div>
       </a>
       <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">

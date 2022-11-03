@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Mapeo Icons',
+    title: 'Mapeo Icons Generator',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -48,15 +48,15 @@ export default {
       messages: {
         en: {
           welcome: 'Welcome',
-          'enter-search': 'Type a noun to search for icons',
+          'enter-search': 'Enter a word to search for icons',
           loading: 'loading',
           search: 'search',
           color: 'color',
           name: 'name',
           'enter-icon-name': 'Change icon name',
-          error: "we couldn't find any icons with those terms",
+          error: "we couldn't find any icons associated with that word",
           'save-images':
-            "Click the below icons to download them. If download doesn't happen automatically, right-click or touch and hold to save the svgs.",
+            "Click the below icons to download them. If download doesn't happen automatically, right-click or touch and hold to save the SVGs.",
           'search-again': 'Do another search',
           'load-more': 'Load more',
           generate: 'Generate',
