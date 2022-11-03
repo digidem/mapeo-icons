@@ -5,6 +5,7 @@ module.exports = async (noun, locale, pagination) => {
   if (!noun || typeof noun !== 'string') throw Error
   translation = noun
   if (locale !== 'en') translation = await translate(noun, locale)
+  translation = translation.split(' ').join('%20')
   console.log(`Downloading page ${pagination} translated: ${translation}`)
   const { NOUN_KEY, NOUN_SECRET, ICONS_TO_DOWNLOAD } = process.env
   const resLimit = parseInt(ICONS_TO_DOWNLOAD)
