@@ -86,8 +86,9 @@ export default {
           name: 'nombre',
           'enter-icon-name': 'Cambiar el nombre del icono',
           error: 'no pudimos encontrar ningún ícono con esos términos',
-          'save-images': 'Seleccione las imágenes a bajo para guardarlas',
-          'search-again': 'Hacer otra busca',
+          'save-images':
+            'Haga clic en las siguientes imágenes para guardarlas.',
+          'search-again': 'Hacer otra búsqueda',
           'load-more': 'Cargar más',
           generate: 'Generar',
           'select-icon': 'Seleccione un icono para generar',
