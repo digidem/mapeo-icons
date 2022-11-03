@@ -48,8 +48,10 @@ export default {
       messages: {
         en: {
           title: 'Mapeo Icons Generator',
-          description: 'This tool can be used to generate icons for use in Mapeo, or any other tool. Currently, the tool generates icons in an SVG format ready to be used in a Mapeo configuration.',
-          config: 'To learn more about integrating these icons in a Mapeo configuration, see the documentation here:',
+          description:
+            'This tool can be used to generate icons for use in Mapeo, or any other tool. Currently, the tool generates icons in an SVG format ready to be used in a Mapeo configuration.',
+          config:
+            'To learn more about integrating these icons in a Mapeo configuration, see the documentation here:',
           link: 'link',
           welcome: 'Welcome',
           'enter-search': 'Enter a word to search for icons',
@@ -68,8 +70,10 @@ export default {
         },
         pt: {
           title: 'Gerador de ícones Mapeo',
-          description: 'Esta ferramenta pode ser usada para gerar ícones para uso no Mapeo, ou qualquer outra ferramenta. Atualmente, a ferramenta gera ícones em formato SVG prontos para serem usados em uma configuração Mapeo.',
-          config: 'Para saber mais sobre como integrar estes ícones em uma configuração Mapeo, veja a documentação aqui:',
+          description:
+            'Esta ferramenta pode ser usada para gerar ícones para uso no Mapeo, ou qualquer outra ferramenta. Atualmente, a ferramenta gera ícones em formato SVG prontos para serem usados em uma configuração Mapeo.',
+          config:
+            'Para saber mais sobre como integrar estes ícones em uma configuração Mapeo, veja a documentação aqui:',
           link: 'link',
           welcome: 'Bem vindo',
           'enter-search': 'Digite um substantivo para buscar ícones',
@@ -87,8 +91,10 @@ export default {
         },
         es: {
           title: 'Generador de iconos Mapeo',
-          description: 'Esta herramienta se puede utilizar para generar iconos para su uso en Mapeo o cualquier otra herramienta. Actualmente, la herramienta genera iconos en formato SVG listos para ser utilizados en una configuración de Mapeo.',
-          config: 'Para obtener más información sobre cómo integrar estos íconos en una configuración de Mapeo, consulte la documentación aquí:',
+          description:
+            'Esta herramienta se puede utilizar para generar iconos para su uso en Mapeo o cualquier otra herramienta. Actualmente, la herramienta genera iconos en formato SVG listos para ser utilizados en una configuración de Mapeo.',
+          config:
+            'Para obtener más información sobre cómo integrar estos íconos en una configuración de Mapeo, consulte la documentación aquí:',
           link: 'enlace',
           welcome: 'Bienvenido',
           'enter-search': 'Introduce un sustantivo para buscar iconos',

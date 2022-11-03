@@ -3,11 +3,11 @@
   <div
     class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0"
   >
-    <div class="max-w-4xl mx-auto pt-5vh sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto pt-5vh md:pt-0 sm:px-6 lg:px-8">
       <div class="max-w-lg mx-auto sm:px-1 lg:px-2 mb-5">
         <img class="mx-auto h-100px md:h-150px" src="/logo.webp" />
       </div>
-      <div class="text-center">
+      <div class="text-center max-w-95vw mx-auto">
         <h1 class="font-bold text-2xl py-4">{{ $t('title') }}</h1>
         <div class="text-md md:text-lg mx-auto">
           <p class="mb-5">{{ $t('description') }}</p>
