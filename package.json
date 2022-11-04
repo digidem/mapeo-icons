@@ -31,6 +31,7 @@
     "nuxt": "^2.15.8",
     "oauth": "^0.10.0",
     "potrace": "^2.1.8",
+    "svgo": "^3.0.0",
     "vue": "^2.7.13",
     "vue-color": "^2.8.1",
     "vue-server-renderer": "^2.7.13",
