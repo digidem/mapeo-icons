@@ -13,7 +13,12 @@
           <p class="mb-5">{{ $t('description') }}</p>
           <p class="mb-5">
             {{ $t('config') }}
-            <a href="https://docs.mapeo.app/complete-reference-guide/customization-options/custom-configurations/creating-custom-configurations" target="_blank" class="underline">{{ $t('link') }}</a>
+            <a
+              href="https://docs.mapeo.app/complete-reference-guide/customization-options/custom-configurations/creating-custom-configurations"
+              target="_blank"
+              class="underline"
+              >{{ $t('link') }}</a
+            >
           </p>
         </div>
       </div>
@@ -55,8 +60,8 @@ export default {
   name: 'NuxtTutorial',
   props: {
     error: {
-      type: Boolean,
-      default: false,
+      type: String || null,
+      default: null,
     },
   },
   data() {

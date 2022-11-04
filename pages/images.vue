@@ -78,8 +78,10 @@ export default Vue.extend({
     const { s, l } = query
     try {
       const response = await app.$axios.$get(`/api/search?s=${s}&l=${l}`)
+      if (response.error) return { ...response }
       return { images: response, search: s, language: l }
     } catch (err) {
+      console.error(err)
       return { err, images: null, search: s, language: l }
     }
   },
@@ -100,9 +102,9 @@ export default Vue.extend({
     },
   },
   mounted() {
-    if (this.err) {
-      let error = 'error=true'
-      if (this.err.code === 'ECONNREFUSED') error = ''
+    if (this.error) {
+      const error = `error=${this.err.data}`
+      console.log('this.err', this.err)
       this.$router.push(this.localePath(`/?${error}`))
     } else if (this.images?.length > 0) this.active = this.images[0]
   },

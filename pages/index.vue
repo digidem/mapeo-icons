@@ -9,7 +9,7 @@ export default Vue.extend({
   name: 'IndexPage',
   asyncData({ query }) {
     const { error } = query
-    return { error: !!error }
+    return { error }
   },
 })
 </script>
