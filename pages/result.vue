@@ -40,7 +40,7 @@
         </div>
         <div class="mt-4 pt-4 text-gray-800 border-t border-dashed">
           <NuxtLink :to="localePath(`/`)">
-            <button class="uppercase bg-green-400 py-4 px-8 mt-4 rounded-xl">
+            <button class="uppercase bg-yellow-400 py-4 px-8 mt-4 rounded-xl">
               {{ $t('search-again') }}
             </button>
           </NuxtLink>

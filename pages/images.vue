@@ -26,12 +26,23 @@
             <img width="100" :src="image" />
           </div>
         </div>
+        <p v-if="loadingMoreError" class="text-red-500 py-4 text-center">
+          {{ $t('loadingMoreError') }}!
+        </p>
         <div
           class="flex flex-col text-gray-800 md:border-t md:border-dashed fixed right-0.5 left-0.5 md:static bottom-4 md:bottom-0 md:flex-row md:justify-around items-center"
         >
+          <NuxtLink v-if="loadingMoreError" :to="localePath('/')">
+            <button
+              class="w-250px uppercase bg-yellow-400 py-4 px-8 rounded-xl"
+            >
+              {{ $t('search-again') }}
+            </button>
+          </NuxtLink>
           <button
+            v-else
             :disabled="loadingMore"
-            class="uppercase bg-gray-900 py-4 px-8 rounded-xl text-light-700"
+            class="w-250px uppercase bg-gray-900 py-4 px-8 rounded-xl text-light-700"
             @click="loadMore"
           >
             {{ $t(loadingMore ? 'loading' : 'load-more') }}
@@ -52,7 +63,7 @@
           >
             <button
               :disabled="loading"
-              class="uppercase bg-green-400 py-4 px-8 rounded-xl"
+              class="w-250px uppercase bg-green-400 py-4 px-8 rounded-xl"
               @click="loading = true"
             >
               {{ $t(loading ? 'loading' : 'generate') }}
@@ -88,6 +99,7 @@ export default Vue.extend({
       active: null,
       loading: false,
       loadingMore: false,
+      loadingMoreError: false,
       pagination: 1,
       color: {
         hex: '#194d33',
@@ -117,8 +129,8 @@ export default Vue.extend({
         this.images = [...this.images, ...response]
         this.loadingMore = false
       } catch (err) {
-        console.log(err)
         this.loadingMore = false
+        this.loadingMoreError = true
       }
     },
   },

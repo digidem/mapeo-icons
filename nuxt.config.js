@@ -53,7 +53,7 @@ export default {
           config:
             'To learn more about integrating these icons in a Mapeo configuration, see the documentation here:',
           link: 'link',
-          welcome: 'Welcome',
+          'select-language': 'Select your language',
           'enter-search': 'Enter one or more words to search for icons',
           loading: 'loading',
           search: 'search',
@@ -61,6 +61,8 @@ export default {
           name: 'name',
           'enter-icon-name': 'Change icon name',
           error: "we couldn't find any icons associated with that phrase",
+          loadingMoreError:
+            "that's all the icons we could find for that phrase",
           'save-images':
             "Click the below icons to download them. If download doesn't happen automatically, right-click or touch and hold to save the SVGs.",
           'search-again': 'Do another search',
@@ -75,7 +77,7 @@ export default {
           config:
             'Para saber mais sobre como integrar estes ícones em uma configuração Mapeo, veja a documentação aqui:',
           link: 'link',
-          welcome: 'Bem vindo',
+          'select-language': 'Selecione seu idioma',
           'enter-search': 'Digite um ou mais substantivos para buscar ícones',
           loading: 'carregando',
           search: 'buscar',
@@ -83,7 +85,9 @@ export default {
           name: 'nome',
           'enter-icon-name': 'Mudar o nome do ícone',
           'save-images': 'Clique nos ícones a baixo para salva-los',
-          error: 'não encontramos nenhum ícone com esses termos',
+          error: 'não encontramos nenhum ícone com essa frase',
+          loadingMoreError:
+            'esses são todos os ícones que encontramos para essa frase',
           'search-again': 'Fazer outra busca',
           'load-more': 'Carregar mais',
           generate: 'Gerar',
@@ -96,14 +100,16 @@ export default {
           config:
             'Para obtener más información sobre cómo integrar estos íconos en una configuración de Mapeo, consulte la documentación aquí:',
           link: 'enlace',
-          welcome: 'Bienvenido',
+          'select-language': 'Seleccione su idioma',
           'enter-search': 'Introduce uno o más sustantivos para buscar iconos',
           loading: 'cargando',
           search: 'buscar',
           color: 'color',
           name: 'nombre',
           'enter-icon-name': 'Cambiar el nombre del icono',
-          error: 'no pudimos encontrar ningún ícono con esos términos',
+          error: 'no pudimos encontrar ningún ícono con esa frase',
+          loadingMoreError:
+            'estos son todos los íconos que pudimos encontrar para esa frase',
           'save-images':
             'Haga clic en las siguientes imágenes para guardarlas.',
           'search-again': 'Hacer otra búsqueda',
