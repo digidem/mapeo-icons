@@ -59,8 +59,8 @@
                 {{ $t(loading ? 'loading' : 'search') }}
               </button>
             </NuxtLink>
-            <p v-if="error" class="text-red-500">{{ $t('error') }}!</p>
           </form>
+          <p v-if="error" class="text-red-500">{{ $t('error') }}!</p>
         </div>
       </div>
       <footer />
