@@ -72,8 +72,8 @@ export default {
   name: 'NuxtTutorial',
   props: {
     error: {
-      type: Boolean,
-      default: false,
+      type: String || null,
+      default: null,
     },
   },
   data() {
