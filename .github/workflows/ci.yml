@@ -24,3 +24,10 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           tags: communityfirst/mapeo-icons:latest
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: peterevans/dockerhub-description
+          short-description: 'Tool to generate icons for use in Mapeo, or any other tool. Currently, the tool generates icons in an SVG format ready to be used in a Mapeo configuration.'
