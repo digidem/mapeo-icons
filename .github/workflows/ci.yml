@@ -31,5 +31,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: peterevans/dockerhub-description
+          repository: communityfirst/mapeo-icons
           short-description: 'Tool to generate icons for use in Mapeo, or any other tool. Currently, the tool generates icons in an SVG format ready to be used in a Mapeo configuration.'
