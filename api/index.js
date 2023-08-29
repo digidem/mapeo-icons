@@ -1,10 +1,21 @@
 require('dotenv').config()
 
 const express = require('express')
+const cors = require('cors') // Added line for cors
 const search = require('./lib/iconSearch')
 const generate = require('./lib/generateMapeoIcon')
-
+const { CORS } = process.env
 const app = express()
+const corsOptions = {
+  origin: CORS
+    ? typeof CORS === 'string'
+      ? CORS.includes(',')
+        ? CORS.split(',')
+        : CORS
+      : '*'
+    : false,
+}
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
