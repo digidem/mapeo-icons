@@ -1,6 +1,6 @@
-# Mapeo icons
+# CoMapeo icons
 
-A simple API and GUI for translating search terms, and scraping them from icon repositories. It's meant to work with [Mapeo](https://mapeo.app), so it it also let's user choose icon colors, and renames them according to Mapeo configuration standards.
+A simple API and GUI for translating search terms, and scraping them from icon repositories. It's meant to work with [CoMapeo](https://comapeo.app/) and [Mapeo](https://mapeo.app), so it it also let's user choose icon colors, and renames them according to categories standards.
 
 ## Build Setup
 

@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Mapeo Icons Generator',
+    title: 'CoMapeo Icons Generator',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -47,11 +47,11 @@ export default {
       fallbackLocale: 'en',
       messages: {
         en: {
-          title: 'Mapeo Icons Generator',
+          title: 'CoMapeo Icons Generator',
           description:
-            'This tool can be used to generate icons for use in Mapeo, or any other tool. Currently, the tool generates icons in an SVG format ready to be used in a Mapeo configuration.',
+            'This tool can be used to generate icons for use in CoMapeo, or any other tool. Currently, the tool generates icons in an SVG format ready to be used in a CoMapeo configuration.',
           config:
-            'To learn more about integrating these icons in a Mapeo configuration, see the documentation here:',
+            'To learn more about integrating these icons in a CoMapeo configuration, see the documentation here:',
           link: 'link',
           'select-language': 'Select your language',
           'enter-search': 'Enter one or more words to search for icons',
@@ -71,11 +71,11 @@ export default {
           'select-icon': 'Select an icon to generate',
         },
         pt: {
-          title: 'Gerador de ícones Mapeo',
+          title: 'Gerador de ícones para o CoMapeo',
           description:
-            'Esta ferramenta pode ser usada para gerar ícones para uso no Mapeo, ou qualquer outra ferramenta. Atualmente, a ferramenta gera ícones em formato SVG prontos para serem usados em uma configuração Mapeo.',
+            'Esta ferramenta pode ser usada para gerar ícones para uso no CoMapeo, ou qualquer outra ferramenta. Atualmente, a ferramenta gera ícones em formato SVG prontos para serem usados em categorias para o CoMapeo.',
           config:
-            'Para saber mais sobre como integrar estes ícones em uma configuração Mapeo, veja a documentação aqui:',
+            'Para saber mais sobre como integrar estes ícones em uma configuração CoMapeo, veja a documentação aqui:',
           link: 'link',
           'select-language': 'Selecione seu idioma',
           'enter-search': 'Digite um ou mais substantivos para buscar ícones',
@@ -94,11 +94,11 @@ export default {
           'select-icon': 'Selecione um ícone para gerar',
         },
         es: {
-          title: 'Generador de iconos Mapeo',
+          title: 'Generador de iconos para CoMapeo',
           description:
-            'Esta herramienta se puede utilizar para generar iconos para su uso en Mapeo o cualquier otra herramienta. Actualmente, la herramienta genera iconos en formato SVG listos para ser utilizados en una configuración de Mapeo.',
+            'Esta herramienta se puede utilizar para generar iconos para su uso en CoMapeo o cualquier otra herramienta. Actualmente, la herramienta genera iconos en formato SVG listos para ser utilizados en categorias para CoMapeo.',
           config:
-            'Para obtener más información sobre cómo integrar estos íconos en una configuración de Mapeo, consulte la documentación aquí:',
+            'Para obtener más información sobre cómo integrar estos íconos en una configuración de CoMapeo, consulte la documentación aquí:',
           link: 'enlace',
           'select-language': 'Seleccione su idioma',
           'enter-search': 'Introduce uno o más sustantivos para buscar iconos',
