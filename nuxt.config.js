@@ -41,7 +41,7 @@ export default {
     '@nuxtjs/pwa',
   ],
   i18n: {
-    locales: ['en', 'pt', 'es'],
+    locales: ['en', 'pt', 'es', 'th'],
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
@@ -116,6 +116,29 @@ export default {
           'load-more': 'Cargar más',
           generate: 'Generar',
           'select-icon': 'Seleccione un icono para generar',
+        },
+        th: {
+          title: 'เครื่องมือสร้างไอคอนสำหรับ CoMapeo',
+          description:
+            'เครื่องมือนี้สามารถใช้สร้างไอคอนสำหรับใช้งานใน CoMapeo หรือเครื่องมืออื่นๆ ปัจจุบันเครื่องมือจะสร้างไอคอนในรูปแบบ SVG ที่พร้อมใช้งานในการกำหนดค่า CoMapeo',
+          config:
+            'หากต้องการเรียนรู้เพิ่มเติมเกี่ยวกับการรวมไอคอนเหล่านี้ในการกำหนดค่า CoMapeo โปรดดูเอกสารที่นี่:',
+          link: 'ลิงก์',
+          'select-language': 'เลือกภาษาของคุณ',
+          'enter-search': 'ป้อนคำหนึ่งคำหรือมากกว่าเพื่อค้นหาไอคอน',
+          loading: 'กำลังโหลด',
+          search: 'ค้นหา',
+          color: 'สี',
+          name: 'ชื่อ',
+          'enter-icon-name': 'เปลี่ยนชื่อไอคอน',
+          error: 'เราไม่พบไอคอนที่เกี่ยวข้องกับวลีนั้น',
+          loadingMoreError: 'นี่คือไอคอนทั้งหมดที่เราพบสำหรับวลีนั้น',
+          'save-images':
+            'คลิกที่ไอคอนด้านล่างเพื่อดาวน์โหลด หากการดาวน์โหลดไม่เกิดขึ้นโดยอัตโนมัติ ให้คลิกขวาหรือแตะค้างไว้เพื่อบันทึก SVG',
+          'search-again': 'ค้นหาอีกครั้ง',
+          'load-more': 'โหลดเพิ่มเติม',
+          generate: 'สร้าง',
+          'select-icon': 'เลือกไอคอนเพื่อสร้าง',
         },
       },
     },

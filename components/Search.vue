@@ -39,6 +39,7 @@
             <option value="en">English</option>
             <option value="fr">Français</option>
             <option value="nl">Nederlands</option>
+            <option value="th">ไทย</option>
           </select>
         </div>
         <div class="border-t border-dashed mt-4 pt-4">
