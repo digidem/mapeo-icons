@@ -5,7 +5,7 @@ class Color {
 
   toString() {
     return `rgb(${Math.round(this.r)}, ${Math.round(this.g)}, ${Math.round(
-      this.b
+      this.b,
     )})`
   }
 
@@ -77,13 +77,13 @@ class Color {
 
   multiply(matrix) {
     const newR = this.clamp(
-      this.r * matrix[0] + this.g * matrix[1] + this.b * matrix[2]
+      this.r * matrix[0] + this.g * matrix[1] + this.b * matrix[2],
     )
     const newG = this.clamp(
-      this.r * matrix[3] + this.g * matrix[4] + this.b * matrix[5]
+      this.r * matrix[3] + this.g * matrix[4] + this.b * matrix[5],
     )
     const newB = this.clamp(
-      this.r * matrix[6] + this.g * matrix[7] + this.b * matrix[8]
+      this.r * matrix[6] + this.g * matrix[7] + this.b * matrix[8],
     )
     this.r = newR
     this.g = newG
@@ -283,9 +283,9 @@ class Solver {
       return Math.round(filters[idx] * multiplier)
     }
     return `filter: invert(${fmt(0)}%) sepia(${fmt(1)}%) saturate(${fmt(
-      2
+      2,
     )}%) hue-rotate(${fmt(3, 3.6)}deg) brightness(${fmt(4)}%) contrast(${fmt(
-      5
+      5,
     )}%);`
   }
 }

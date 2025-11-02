@@ -8,7 +8,9 @@ test.describe('Icon Search Functionality', () => {
     await page.goto('/', { waitUntil: 'networkidle' })
 
     // Wait for the page to load - increase timeout
-    await expect(page).toHaveTitle(/CoMapeo Icons Generator/i, { timeout: 15000 })
+    await expect(page).toHaveTitle(/CoMapeo Icons Generator/i, {
+      timeout: 15000,
+    })
 
     // Check language selector and set to Portuguese if not already
     const languageSelect = page.locator('select').first()
@@ -53,7 +55,9 @@ test.describe('Icon Search Functionality', () => {
       path: 'tests/e2e/screenshots/cachorro-search.png',
     })
 
-    console.log(`✓ Successfully navigated to search results page for "cachorro"`)
+    console.log(
+      `✓ Successfully navigated to search results page for "cachorro"`,
+    )
   })
 
   test('should handle empty search gracefully', async ({ page }) => {
@@ -82,26 +86,18 @@ test.describe('Icon Search Functionality', () => {
 
     // Test switching to Portuguese
     await languageSelect.selectOption({ value: 'pt' })
-    await expect(
-      page.getByPlaceholder(/Digite um ou mais/i)
-    ).toBeVisible()
+    await expect(page.getByPlaceholder(/Digite um ou mais/i)).toBeVisible()
 
     // Test switching to English
     await languageSelect.selectOption({ value: 'en' })
-    await expect(
-      page.getByPlaceholder(/Enter one or more/i)
-    ).toBeVisible()
+    await expect(page.getByPlaceholder(/Enter one or more/i)).toBeVisible()
 
     // Test switching to Spanish
     await languageSelect.selectOption({ value: 'es' })
-    await expect(
-      page.getByPlaceholder(/Introduce uno o más/i)
-    ).toBeVisible()
+    await expect(page.getByPlaceholder(/Introduce uno o más/i)).toBeVisible()
 
     // Test switching to Thai
     await languageSelect.selectOption({ value: 'th' })
-    await expect(
-      page.getByPlaceholder(/ป้อนคำหนึ่งคำ/i)
-    ).toBeVisible()
+    await expect(page.getByPlaceholder(/ป้อนคำหนึ่งคำ/i)).toBeVisible()
   })
 })

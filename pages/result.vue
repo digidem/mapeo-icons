@@ -86,14 +86,14 @@ const name = ref(i18n.t('name') as string)
 const copied = ref(false)
 
 const { data: generatedData } = await useFetch(
-  `/api/generate?image=${imageUrl}&color=${color.value}`
+  `/api/generate?image=${imageUrl}&color=${color.value}`,
 )
 
 onMounted(() => {
   if (generatedData.value && Array.isArray(generatedData.value)) {
     image.value = generatedData.value[0].svg
   }
-  name.value = search.value || i18n.t('name') as string
+  name.value = search.value || (i18n.t('name') as string)
 })
 
 const copyURL = async () => {

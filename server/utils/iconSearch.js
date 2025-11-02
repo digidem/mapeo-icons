@@ -18,7 +18,7 @@ module.exports = async (noun, locale, pagination) => {
     NOUN_SECRET,
     '1.0',
     null,
-    'HMAC-SHA1'
+    'HMAC-SHA1',
   )
   const fetch = (url) =>
     new Promise((resolve, reject) => {
@@ -36,7 +36,7 @@ module.exports = async (noun, locale, pagination) => {
   const search = await fetch(
     `https://api.thenounproject.com/icons/${translation}?limit=${limit}${
       pagination && `&page=${pagination}`
-    }`
+    }`,
   )
   if (!search) return false
   return search.icons.map((icon) => icon.preview_url)

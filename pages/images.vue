@@ -70,9 +70,10 @@ import { ref, computed, onMounted } from 'vue'
 import colorize from '@/libs/colorize'
 
 // Lazy load ColorPicker for client-only rendering
-const ColorPicker = defineAsyncComponent(() =>
-  // @ts-ignore - vue-colorpicker doesn't have proper types
-  import('@caohenghu/vue-colorpicker')
+const ColorPicker = defineAsyncComponent(
+  () =>
+    // @ts-ignore - vue-colorpicker doesn't have proper types
+    import('@caohenghu/vue-colorpicker'),
 )
 
 const route = useRoute()
@@ -83,8 +84,12 @@ const s = (route.query.s as string) || ''
 const l = (route.query.l as string) || 'en'
 const search = ref(s) // Define search variable
 
-const { data: imagesData, error: fetchError } = await useFetch(`/api/search?s=${s}&l=${l}`)
-const images = ref<string[]>(Array.isArray(imagesData.value) ? imagesData.value : [])
+const { data: imagesData, error: fetchError } = await useFetch(
+  `/api/search?s=${s}&l=${l}`,
+)
+const images = ref<string[]>(
+  Array.isArray(imagesData.value) ? imagesData.value : [],
+)
 
 const active = ref<string | null>(null)
 const loading = ref(false)
@@ -94,7 +99,7 @@ const pagination = ref(1)
 const color = ref({
   hex: '#194d33',
   rgba: { r: 25, g: 77, b: 51, a: 1 },
-  hsv: { h: 146, s: 68, v: 30 }
+  hsv: { h: 146, s: 68, v: 30 },
 })
 
 const colorized = computed(() => colorize(color.value?.hex))
@@ -119,8 +124,8 @@ const handleGenerate = () => {
     localePath(
       `/result?image=${active.value}&color=${
         color.value.hex.split('#')[1]
-      }&search=${search.value}`
-    )
+      }&search=${search.value}`,
+    ),
   )
 }
 
@@ -129,7 +134,7 @@ const loadMore = async () => {
   pagination.value = pagination.value + 1
   try {
     const response = await $fetch(
-      `/api/search?s=${s}&l=${l}&p=${pagination.value}`
+      `/api/search?s=${s}&l=${l}&p=${pagination.value}`,
     )
     if (Array.isArray(images.value) && Array.isArray(response)) {
       images.value = [...images.value, ...response]

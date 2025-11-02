@@ -7,18 +7,21 @@ Dev server running on **http://localhost:3001** with **zero compilation errors**
 ## Completed Changes
 
 ### 1. **Nuxt Configuration Migration** ✅
+
 - Migrated `nuxt.config.js` from Nuxt 2 to Nuxt 4 format
 - Moved head configuration from root to `app.head`
 - Removed deprecated `buildModules` and `serverMiddleware`
 - Added `compatibilityDate` for Nuxt 4.2.0
 
 ### 2. **i18n Configuration** ✅
+
 - Created separate `i18n.config.ts` file
 - Moved all translation messages from inline config to dedicated i18n module
 - Supports: English (en), Portuguese (pt), Spanish (es), Thai (th)
 - Fixed language selector to only show supported languages
 
 ### 3. **Server API Routes Migration** ✅
+
 - Migrated from Express.js API middleware to Nuxt 4 server routes
 - Created `/server/api/search.get.ts` for icon search endpoint
 - Created `/server/api/generate.get.ts` for icon generation endpoint
@@ -26,21 +29,25 @@ Dev server running on **http://localhost:3001** with **zero compilation errors**
 - Fixed CommonJS module imports for server routes
 
 ### 4. **Vue Components - Complete Vue 3 Migration** ✅
+
 - **pages/index.vue**: Updated to Vue 3 `<script setup>` with useRoute() and computed()
 - **pages/images.vue**: Migrated from asyncData to useFetch(), converted to Composition API
 - **pages/result.vue**: Migrated from asyncData to useFetch(), converted to Composition API
 - **components/Search.vue**: Updated to Vue 3 Composition API, replaced Nuxt 2 i18n API with Nuxt 3 i18n
 
 ### 5. **Asset Directory** ✅
+
 - Renamed `static/` directory to `public/` (Nuxt 3+ convention)
 - Logo and static assets now served from `public/` directory
 
 ### 6. **Package Scripts** ✅
+
 - Updated `"dev": "nuxt"` → `"dev": "nuxt dev"`
 - Updated `"start": "nuxt start"` → `"start": "nuxt preview"`
 - Added test scripts: `"test": "playwright test"`
 
 ### 7. **Testing Infrastructure** ✅
+
 - Installed Playwright (`@playwright/test`)
 - Created `playwright.config.ts` with Chromium browser configuration
 - Created `tests/e2e/search.spec.ts` with three test cases:
@@ -51,12 +58,14 @@ Dev server running on **http://localhost:3001** with **zero compilation errors**
 ## Test Execution
 
 ### Running the App
+
 ```bash
 npm run dev
 # Runs on http://localhost:3002
 ```
 
 ### Running Playwright Tests
+
 ```bash
 npm test                  # Run headless tests
 npm test:ui              # Run tests with interactive UI
@@ -66,6 +75,7 @@ npm test:headed          # Run tests with visible browser
 ## Test Coverage
 
 The main test `"should search for "cachorro" in Portuguese and load icons"`:
+
 1. Navigates to the app
 2. Verifies page title contains "CoMapeo Icons Generator"
 3. Sets language to Portuguese (pt)
@@ -80,11 +90,13 @@ This test can be run repeatedly to verify the app is working correctly.
 ## Remaining Considerations
 
 ### Potential Issues to Address
+
 - Some Vue 2 components may still use old syntax (check `Search.vue` and `result.vue`)
 - Verify all API endpoints are working with dynamic imports
 - Check if there are any store/state management dependencies from Vuex that need migration to Pinia
 
 ### Future Improvements
+
 - Convert remaining Vue pages to `<script setup>` syntax
 - Update Vuex store (if exists) to Pinia
 - Consider migrating `.js` files in `/api/lib/` to `.ts` for type safety
