@@ -9,7 +9,7 @@
         <p>{{ $t('enter-icon-name') }}</p>
         <input
           v-model="name"
-          class="border-solid border-1px rounded-lg border-red-300 py-4 pl-4 mb-12 mt-4"
+          class="border-solid border-[1px] rounded-lg border-red-300 py-4 pl-4 mb-12 mt-4"
           type="text"
           aria-label="term"
         />

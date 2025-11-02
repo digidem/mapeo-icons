@@ -47,7 +47,7 @@
           >
             <input
               v-model="term"
-              class="w-full md:w-3/4 border-solid border-1px rounded-lg md:rounded-none md:rounded-l-lg border-red-300 py-4 pl-4"
+              class="w-full md:w-3/4 border-solid border-[1px] rounded-lg md:rounded-none md:rounded-l-lg border-red-300 py-4 pl-4"
               type="text"
               aria-label="term"
               :placeholder="$t('enter-search')"
