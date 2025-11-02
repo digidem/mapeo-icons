@@ -8,17 +8,17 @@
       </div>
       <div class="bg-light-100 overflow-hidden shadow sm:rounded-lg p-6">
         <h1 class="text-center font-bold text-xl md:text-2xl py-4">
-          {{ $t('title') }}
+          {{ $t("title") }}
         </h1>
         <div class="md:px-12 text-md md:text-lg mx-auto">
-          <p class="mb-5">{{ $t('description') }}</p>
+          <p class="mb-5">{{ $t("description") }}</p>
           <p class="mb-5">
-            {{ $t('config') }}
+            {{ $t("config") }}
             <a
               href="https://docs.mapeo.app/complete-reference-guide/customization-options/custom-configurations/creating-custom-configurations"
               target="_blank"
               class="underline"
-              >{{ $t('link') }}</a
+              >{{ $t("link") }}</a
             >
           </p>
         </div>
@@ -26,7 +26,7 @@
       <div class="mt-8 bg-light-50 overflow-hidden shadow sm:rounded-lg p-6">
         <div class="flex flex-row justify-around">
           <h2 class="text-2xl leading-7 font-semibold">
-            {{ $t('select-language') }}
+            {{ $t("select-language") }}
           </h2>
           <select
             v-model="locale"
@@ -40,7 +40,7 @@
           </select>
         </div>
         <div class="border-t border-dashed mt-4 pt-4">
-          <p class="pb-8 text-center">{{ $t('enter-search') }}</p>
+          <p class="pb-8 text-center">{{ $t("enter-search") }}</p>
           <form
             class="text-gray-800 flex flex-col md:flex-row flex-nowrap md:justify-between"
             @submit.prevent="handleSearch"
@@ -58,11 +58,13 @@
               :disabled="loading"
               class="w-250px uppercase bg-green-400 text-gray-700 py-4 px-8 mt-4 md:mt-0 rounded-xl md:rounded-none md:rounded-r-lg"
             >
-              {{ $t(loading ? 'loading' : 'search') }}
+              {{ $t(loading ? "loading" : "search") }}
             </button>
           </form>
-          <p v-if="error" class="text-red-500">{{ $t('error') }}!</p>
-          <p v-if="emptySearchError" class="text-red-500">{{ $t('empty-search-error') }}!</p>
+          <p v-if="error" class="text-red-500">{{ $t("error") }}!</p>
+          <p v-if="emptySearchError" class="text-red-500">
+            {{ $t("empty-search-error") }}!
+          </p>
         </div>
       </div>
       <footer />
@@ -70,42 +72,42 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
 defineProps({
   error: {
     type: Boolean,
     default: false,
   },
-})
+});
 
-const i18n = useI18n()
-const router = useRouter()
-const localePath = useLocalePath()
+const i18n = useI18n();
+const router = useRouter();
+const localePath = useLocalePath();
 
-const locale = ref(i18n.locale.value || 'en')
-const term = ref('')
-const loading = ref(false)
-const emptySearchError = ref(false)
+const locale = ref(i18n.locale.value || "en");
+const term = ref("");
+const loading = ref(false);
+const emptySearchError = ref(false);
 
 const handleSearch = () => {
   if (!term.value.trim()) {
-    emptySearchError.value = true
-    return
+    emptySearchError.value = true;
+    return;
   }
-  emptySearchError.value = false
-  loading.value = true
-  router.push(localePath(`/images?s=${term.value}&l=${locale.value}`))
-}
+  emptySearchError.value = false;
+  loading.value = true;
+  router.push(localePath(`/images?s=${term.value}&l=${locale.value}`));
+};
 
 const changeLocale = () => {
-  i18n.setLocale(locale.value)
-  emptySearchError.value = false
-}
+  i18n.setLocale(locale.value);
+  emptySearchError.value = false;
+};
 
 const updateSearchInput = () => {
   if (term.value.trim()) {
-    emptySearchError.value = false
+    emptySearchError.value = false;
   }
-}
+};
 </script>

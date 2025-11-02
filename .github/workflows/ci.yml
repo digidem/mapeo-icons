@@ -3,7 +3,7 @@ name: ci
 on:
   push:
     branches:
-      - 'master'
+      - "master"
 
 jobs:
   docker:
@@ -32,4 +32,4 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: communityfirst/mapeo-icons
-          short-description: 'Tool to generate icons for use in CoMapeo, or any other tool. Currently, the tool generates icons in an SVG format ready to be used for CoMapeo custom categories.'
+          short-description: "Tool to generate icons for use in CoMapeo, or any other tool. Currently, the tool generates icons in an SVG format ready to be used for CoMapeo custom categories."

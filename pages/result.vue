@@ -6,7 +6,7 @@
       <div
         class="flex flex-col items-center mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6 text-center"
       >
-        <p>{{ $t('enter-icon-name') }}</p>
+        <p>{{ $t("enter-icon-name") }}</p>
         <input
           v-model="name"
           class="border-solid border-[1px] rounded-lg border-red-300 py-4 pl-4 mb-12 mt-4"
@@ -15,7 +15,7 @@
         />
         <div class="mt-4 pt-4 mb-12 text-gray-800 border-t border-dashed">
           <p class="md:px-12">
-            {{ $t('save-images') }}
+            {{ $t("save-images") }}
           </p>
         </div>
         <div>
@@ -62,7 +62,7 @@
         <div class="mt-4 pt-4 text-gray-800 border-t border-dashed">
           <NuxtLink :to="localePath(`/`)">
             <button class="uppercase bg-yellow-400 py-4 px-8 mt-4 rounded-xl">
-              {{ $t('search-again') }}
+              {{ $t("search-again") }}
             </button>
           </NuxtLink>
         </div>
@@ -72,41 +72,41 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted } from "vue";
 
-const route = useRoute()
-const i18n = useI18n()
-const localePath = useLocalePath()
+const route = useRoute();
+const i18n = useI18n();
+const localePath = useLocalePath();
 
-const image = ref('')
-const imageUrl = (route.query.image as string) || ''
-const color = ref((route.query.color as string) || '')
-const search = ref((route.query.search as string) || '')
-const name = ref(i18n.t('name') as string)
-const copied = ref(false)
+const image = ref("");
+const imageUrl = (route.query.image as string) || "";
+const color = ref((route.query.color as string) || "");
+const search = ref((route.query.search as string) || "");
+const name = ref(i18n.t("name") as string);
+const copied = ref(false);
 
 const { data: generatedData } = await useFetch(
   `/api/generate?image=${imageUrl}&color=${color.value}`,
-)
+);
 
 onMounted(() => {
   if (generatedData.value && Array.isArray(generatedData.value)) {
-    image.value = generatedData.value[0].svg
+    image.value = generatedData.value[0].svg;
   }
-  name.value = search.value || (i18n.t('name') as string)
-})
+  name.value = search.value || (i18n.t("name") as string);
+});
 
 const copyURL = async () => {
-  copied.value = true
+  copied.value = true;
   try {
     if (navigator.clipboard) {
-      await navigator.clipboard.writeText(`#${color.value}`)
+      await navigator.clipboard.writeText(`#${color.value}`);
     }
   } catch (err) {
-    console.error('Failed to copy:', err)
+    console.error("Failed to copy:", err);
   }
   setTimeout(() => {
-    copied.value = false
-  }, 3000)
-}
+    copied.value = false;
+  }, 3000);
+};
 </script>

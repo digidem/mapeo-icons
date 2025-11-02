@@ -3,6 +3,6 @@
 </template>
 
 <script setup lang="ts">
-const route = useRoute()
-const error = computed(() => !!route.query.error)
+const route = useRoute();
+const error = computed(() => !!route.query.error);
 </script>
