@@ -30,7 +30,7 @@
           {{ $t('loadingMoreError') }}!
         </p>
         <div
-          class="flex flex-col text-gray-800 md:border-t md:border-dashed fixed right-0.5 left-0.5 md:static bottom-4 md:bottom-0 md:flex-row md:justify-around items-center"
+          class="flex flex-col text-gray-800 md:border-t md:border-dashed fixed right-2 left-2 md:static bottom-4 md:bottom-0 md:flex-row md:justify-around items-center"
         >
           <NuxtLink v-if="loadingMoreError" :to="localePath('/')">
             <button

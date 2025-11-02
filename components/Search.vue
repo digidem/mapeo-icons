@@ -2,9 +2,9 @@
   <div
     class="relative flex items-top justify-center min-h-screen bg-gray-200 sm:items-center sm:pt-0"
   >
-    <div class="max-w-4xl mx-auto pt-5vh md:pt-0 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto pt-[5vh] md:pt-0 sm:px-6 lg:px-8">
       <div class="max-w-lg mx-auto sm:px-1 lg:px-2 mb-5">
-        <img class="mx-auto [h:100px] md:[h:150px]" src="/logo.webp" />
+        <img class="mx-auto h-100px md:h-150px" src="/logo.webp" />
       </div>
       <div class="bg-light-400 overflow-hidden shadow sm:rounded-lg p-6">
         <h1 class="text-center font-bold text-xl md:text-2xl py-4">
@@ -55,7 +55,7 @@
             <button
               type="submit"
               :disabled="loading"
-              class="[w:250px] uppercase bg-green-400 text-gray-700 py-4 px-8 mt-4 md:mt-0 rounded-xl md:rounded-none md:rounded-r-lg"
+              class="w-250px uppercase bg-green-400 text-gray-700 py-4 px-8 mt-4 md:mt-0 rounded-xl md:rounded-none md:rounded-r-lg"
             >
               {{ $t(loading ? 'loading' : 'search') }}
             </button>
