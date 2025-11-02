@@ -2,14 +2,7 @@
   <Search :error="error" />
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({
-  name: 'IndexPage',
-  asyncData({ query }) {
-    const { error } = query
-    return { error: !!error }
-  },
-})
+<script setup lang="ts">
+const route = useRoute()
+const error = computed(() => !!route.query.error)
 </script>

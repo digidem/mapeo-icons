@@ -1,0 +1,23 @@
+const resource = {
+  "title": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "Gerador de ícones para o CoMapeo" } },
+  "description": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "Esta ferramenta pode ser usada para gerar ícones para uso no CoMapeo, ou qualquer outra ferramenta. Atualmente, a ferramenta gera ícones em formato SVG prontos para serem usados em categorias para o CoMapeo." } },
+  "config": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "Para saber mais sobre como integrar estes ícones em uma configuração CoMapeo, veja a documentação aqui:" } },
+  "link": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "link" } },
+  "select-language": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "Selecione seu idioma" } },
+  "enter-search": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "Digite um ou mais substantivos para buscar ícones" } },
+  "loading": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "carregando" } },
+  "search": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "buscar" } },
+  "color": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "cor" } },
+  "name": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "nome" } },
+  "enter-icon-name": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "Mudar o nome do ícone" } },
+  "error": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "não encontramos nenhum ícone com essa frase" } },
+  "loadingMoreError": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "esses são todos os ícones que encontramos para essa frase" } },
+  "save-images": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "Clique nos ícones a baixo para salva-los" } },
+  "search-again": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "Fazer outra busca" } },
+  "load-more": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "Carregar mais" } },
+  "generate": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "Gerar" } },
+  "select-icon": { "t": 0, "b": { "t": 2, "i": [{ "t": 3 }], "s": "Selecione um ícone para gerar" } }
+};
+
+export { resource as default };
+//# sourceMappingURL=pt-zTox7CBj.mjs.map

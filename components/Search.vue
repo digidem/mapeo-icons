@@ -1,11 +1,10 @@
-<!-- Please remove this file from your project -->
 <template>
   <div
     class="relative flex items-top justify-center min-h-screen bg-gray-200 sm:items-center sm:pt-0"
   >
     <div class="max-w-4xl mx-auto pt-5vh md:pt-0 sm:px-6 lg:px-8">
       <div class="max-w-lg mx-auto sm:px-1 lg:px-2 mb-5">
-        <img class="mx-auto h-100px md:h-150px" src="/logo.webp" />
+        <img class="mx-auto [h:100px] md:[h:150px]" src="/logo.webp" />
       </div>
       <div class="bg-light-400 overflow-hidden shadow sm:rounded-lg p-6">
         <h1 class="text-center font-bold text-xl md:text-2xl py-4">
@@ -34,11 +33,9 @@
             class="px-2 md:px-4 py-1 md:py-2"
             @change="changeLocale"
           >
+            <option value="en">English</option>
             <option value="pt">Português</option>
             <option value="es">Español</option>
-            <option value="en">English</option>
-            <option value="fr">Français</option>
-            <option value="nl">Nederlands</option>
             <option value="th">ไทย</option>
           </select>
         </div>
@@ -46,22 +43,22 @@
           <p class="pb-8 text-center">{{ $t('enter-search') }}</p>
           <form
             class="text-gray-800 flex flex-col md:flex-row flex-nowrap md:justify-between"
+            @submit.prevent="handleSearch"
           >
             <input
               v-model="term"
-              class="w-100% md:w-3/4 border-solid border-1px rounded-lg md:rounded-none md:rounded-l-lg border-red-300 py-4 pl-4"
+              class="w-full md:w-3/4 border-solid border-1px rounded-lg md:rounded-none md:rounded-l-lg border-red-300 py-4 pl-4"
               type="text"
               aria-label="term"
+              :placeholder="$t('enter-search')"
             />
-            <NuxtLink :to="localePath(`/images?s=${term}&l=${locale}`)">
-              <button
-                :disabled="loading"
-                class="w-250px uppercase bg-green-400 text-gray-700 py-4 px-8 mt-4 md:mt-0 rounded-xl md:rounded-none md:rounded-r-lg"
-                @click="loading = true"
-              >
-                {{ $t(loading ? 'loading' : 'search') }}
-              </button>
-            </NuxtLink>
+            <button
+              type="submit"
+              :disabled="loading"
+              class="[w:250px] uppercase bg-green-400 text-gray-700 py-4 px-8 mt-4 md:mt-0 rounded-xl md:rounded-none md:rounded-r-lg"
+            >
+              {{ $t(loading ? 'loading' : 'search') }}
+            </button>
           </form>
           <p v-if="error" class="text-red-500">{{ $t('error') }}!</p>
         </div>
@@ -70,26 +67,32 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  name: 'NuxtTutorial',
-  props: {
-    error: {
-      type: Boolean,
-      default: false,
-    },
+<script setup lang="ts">
+import { ref } from 'vue'
+
+defineProps({
+  error: {
+    type: Boolean,
+    default: false,
   },
-  data() {
-    return {
-      locale: this.$i18n.getLocaleCookie() || this.$i18n.defaultLocale,
-      term: '',
-      loading: false,
-    }
-  },
-  methods: {
-    changeLocale() {
-      this.$router.push(this.switchLocalePath(this.locale))
-    },
-  },
+})
+
+const i18n = useI18n()
+const router = useRouter()
+const localePath = useLocalePath()
+
+const locale = ref(i18n.locale.value || 'en')
+const term = ref('')
+const loading = ref(false)
+
+const handleSearch = () => {
+  if (!term.value.trim()) return
+  loading.value = true
+  router.push(localePath(`/images?s=${term.value}&l=${locale.value}`))
+}
+
+const changeLocale = () => {
+  i18n.setLocale(locale.value)
+  router.push(localePath(`/images?s=${term.value}&l=${locale.value}`))
 }
 </script>

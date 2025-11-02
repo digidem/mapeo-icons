@@ -1,0 +1,50 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - alert [ref=e3]: CoMapeo Icons Generator
+    - generic [ref=e5]:
+      - img [ref=e7]
+      - generic [ref=e8]:
+        - heading "Gerador de ícones para o CoMapeo" [level=1] [ref=e9]
+        - generic [ref=e10]:
+          - paragraph [ref=e11]: Esta ferramenta pode ser usada para gerar ícones para uso no CoMapeo, ou qualquer outra ferramenta. Atualmente, a ferramenta gera ícones em formato SVG prontos para serem usados em categorias para o CoMapeo.
+          - paragraph [ref=e12]:
+            - text: "Para saber mais sobre como integrar estes ícones em uma configuração CoMapeo, veja a documentação aqui:"
+            - link "link" [ref=e13] [cursor=pointer]:
+              - /url: https://docs.mapeo.app/complete-reference-guide/customization-options/custom-configurations/creating-custom-configurations
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - heading "Selecione seu idioma" [level=2] [ref=e16]
+          - combobox [ref=e17]:
+            - option "English"
+            - option "Português" [selected]
+            - option "Español"
+            - option "ไทย"
+        - generic [ref=e18]:
+          - paragraph [ref=e19]: Digite um ou mais substantivos para buscar ícones
+          - generic [ref=e20]:
+            - textbox "term" [ref=e21]:
+              - /placeholder: Digite um ou mais substantivos para buscar ícones
+              - text: cachorro
+            - link "carregando" [ref=e22] [cursor=pointer]:
+              - /url: /pt/images?s=cachorro&l=pt
+              - button "carregando" [disabled] [ref=e23]
+      - contentinfo
+  - generic:
+    - img
+  - generic:
+    - generic:
+      - generic:
+        - button "Go to parent" [disabled]
+        - button "Open in editor"
+        - button "Close"
+  - generic [ref=e24]:
+    - button "Toggle Nuxt DevTools" [ref=e25] [cursor=pointer]:
+      - img [ref=e26]
+    - generic "Page load time" [ref=e29]:
+      - generic [ref=e30]: "-"
+    - button "Toggle Component Inspector" [ref=e32] [cursor=pointer]:
+      - img [ref=e33]
+```

@@ -49,100 +49,95 @@
           </button>
           <div class="flex justify-center py-4">
             <client-only>
-              <chrome-picker v-model="color" />
+              <ColorPicker :color="color.hex" @changeColor="updateColor" />
             </client-only>
           </div>
-          <NuxtLink
-            :to="
-              localePath(
-                `/result?image=${active}&color=${
-                  color.hex.split('#')[1]
-                }&search=${search}`
-              )
-            "
+          <button
+            :disabled="loading || !active"
+            class="w-250px uppercase bg-green-400 py-4 px-8 rounded-xl"
+            @click="handleGenerate"
           >
-            <button
-              :disabled="loading"
-              class="w-250px uppercase bg-green-400 py-4 px-8 rounded-xl"
-              @click="loading = true"
-            >
-              {{ $t(loading ? 'loading' : 'generate') }}
-            </button>
-          </NuxtLink>
+            {{ $t(loading ? 'loading' : 'generate') }}
+          </button>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import Vue from 'vue'
-import { Chrome } from 'vue-color'
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
 import colorize from '@/libs/colorize'
 
-export default Vue.extend({
-  name: 'ImagesPage',
-  components: {
-    'chrome-picker': Chrome,
-  },
-  async asyncData({ app, query }) {
-    const { s, l } = query
-    try {
-      const response = await app.$axios.$get(`/api/search?s=${s}&l=${l}`)
-      return { images: response, search: s, language: l }
-    } catch (err) {
-      return { err, images: null, search: s, language: l }
-    }
-  },
-  data() {
-    return {
-      active: null,
-      loading: false,
-      loadingMore: false,
-      loadingMoreError: false,
-      pagination: 1,
-      color: {
-        hex: '#194d33',
-      },
-    }
-  },
-  computed: {
-    colorized() {
-      return colorize(this.color?.hex)
-    },
-  },
-  mounted() {
-    if (this.err) {
-      let error = 'error=true'
-      if (this.err.code === 'ECONNREFUSED') error = ''
-      this.$router.push(this.localePath(`/?${error}`))
-    } else if (this.images?.length > 0) this.active = this.images[0]
-  },
-  methods: {
-    async loadMore() {
-      this.loadingMore = true
-      this.pagination = this.pagination + 1
-      try {
-        const response = await this.$axios.$get(
-          `/api/search?s=${this.search}&l=${this.language}&p=${this.pagination}`
-        )
-        this.images = [...this.images, ...response]
-        this.loadingMore = false
-      } catch (err) {
-        this.loadingMore = false
-        this.loadingMoreError = true
-      }
-    },
-  },
+// Lazy load ColorPicker for client-only rendering
+const ColorPicker = defineAsyncComponent(() =>
+  // @ts-ignore - vue-colorpicker doesn't have proper types
+  import('@caohenghu/vue-colorpicker')
+)
+
+const route = useRoute()
+const router = useRouter()
+const localePath = useLocalePath()
+
+const s = (route.query.s as string) || ''
+const l = (route.query.l as string) || 'en'
+const search = ref(s) // Define search variable
+
+const { data: imagesData, error: fetchError } = await useFetch(`/api/search?s=${s}&l=${l}`)
+const images = ref<string[]>(Array.isArray(imagesData.value) ? imagesData.value : [])
+
+const active = ref<string | null>(null)
+const loading = ref(false)
+const loadingMore = ref(false)
+const loadingMoreError = ref(false)
+const pagination = ref(1)
+const color = ref({
+  hex: '#194d33',
+  rgba: { r: 25, g: 77, b: 51, a: 1 },
+  hsv: { h: 146, s: 68, v: 30 }
 })
-</script>
-<style>
-.vc-chrome-toggle-btn,
-.vc-chrome-alpha-wrap {
-  display: none;
+
+const colorized = computed(() => colorize(color.value?.hex))
+
+onMounted(() => {
+  if (fetchError.value) {
+    let error = 'error=true'
+    router.push(localePath(`/?${error}`))
+  } else if (Array.isArray(images.value) && images.value.length > 0) {
+    active.value = images.value[0]
+  }
+})
+
+const updateColor = (newColor: any) => {
+  color.value = newColor
 }
 
-.vc-chrome-controls {
-  align-items: end !important;
+const handleGenerate = () => {
+  if (!active.value) return
+  loading.value = true
+  router.push(
+    localePath(
+      `/result?image=${active.value}&color=${
+        color.value.hex.split('#')[1]
+      }&search=${search.value}`
+    )
+  )
 }
-</style>
+
+const loadMore = async () => {
+  loadingMore.value = true
+  pagination.value = pagination.value + 1
+  try {
+    const response = await $fetch(
+      `/api/search?s=${s}&l=${l}&p=${pagination.value}`
+    )
+    if (Array.isArray(images.value) && Array.isArray(response)) {
+      images.value = [...images.value, ...response]
+    }
+    loadingMore.value = false
+  } catch (err) {
+    loadingMore.value = false
+    loadingMoreError.value = true
+  }
+}
+</script>

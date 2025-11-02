@@ -71,42 +71,42 @@
   </div>
 </template>
 
-<script>
-import Vue from 'vue'
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
 
-export default Vue.extend({
-  name: 'ResultPage',
-  async asyncData({ app, query }) {
-    const { image, color, search } = query
-    const response = await app.$axios.$get(
-      `/api/generate?image=${image}&color=${color}`
-    )
-    return { image: response[0].svg, search, color }
-  },
-  data() {
-    return {
-      name: this.$t('name'),
-      copied: false,
-    }
-  },
-  mounted() {
-    this.name = this.search
-  },
-  methods: {
-    copyURL() {
-      if (process.client) {
-        this.copied = true
-        const clipboardData =
-          event.clipboardData ||
-          window.clipboardData ||
-          event.originalEvent?.clipboardData ||
-          navigator.clipboard
-        clipboardData.writeText(`#${this.color}`)
-        window.setTimeout(() => {
-          this.copied = false
-        }, 3000)
-      }
-    },
-  },
+const route = useRoute()
+const i18n = useI18n()
+const localePath = useLocalePath()
+
+const image = ref('')
+const imageUrl = (route.query.image as string) || ''
+const color = ref((route.query.color as string) || '')
+const search = ref((route.query.search as string) || '')
+const name = ref(i18n.t('name') as string)
+const copied = ref(false)
+
+const { data: generatedData } = await useFetch(
+  `/api/generate?image=${imageUrl}&color=${color.value}`
+)
+
+onMounted(() => {
+  if (generatedData.value && Array.isArray(generatedData.value)) {
+    image.value = generatedData.value[0].svg
+  }
+  name.value = search.value || i18n.t('name') as string
 })
+
+const copyURL = async () => {
+  copied.value = true
+  try {
+    if (navigator.clipboard) {
+      await navigator.clipboard.writeText(`#${color.value}`)
+    }
+  } catch (err) {
+    console.error('Failed to copy:', err)
+  }
+  setTimeout(() => {
+    copied.value = false
+  }, 3000)
+}
 </script>
