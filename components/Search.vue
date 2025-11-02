@@ -37,6 +37,8 @@
             <option value="pt">Português</option>
             <option value="es">Español</option>
             <option value="th">ไทย</option>
+            <option value="nl">Nederlands</option>
+            <option value="fr">Français</option>
           </select>
         </div>
         <div class="border-t border-dashed mt-4 pt-4">

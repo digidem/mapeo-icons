@@ -1,0 +1,21 @@
+{
+  "title": "Générateur d'icônes CoMapeo",
+  "description": "Cet outil peut être utilisé pour générer des icônes à utiliser dans CoMapeo ou tout autre outil. Actuellement, l'outil génère des icônes au format SVG prêtes à être utilisées dans une configuration CoMapeo.",
+  "config": "Pour en savoir plus sur l'intégration de ces icônes dans une configuration CoMapeo, consultez la documentation ici :",
+  "link": "lien",
+  "select-language": "Sélectionnez votre langue",
+  "enter-search": "Entrez un ou plusieurs mots pour rechercher des icônes",
+  "loading": "chargement",
+  "search": "rechercher",
+  "color": "couleur",
+  "name": "nom",
+  "enter-icon-name": "Modifier le nom de l'icône",
+  "error": "nous n'avons trouvé aucune icône associée à cette phrase",
+  "empty-search-error": "Veuillez entrer au moins un mot pour rechercher des icônes",
+  "loadingMoreError": "voici toutes les icônes que nous avons trouvées pour cette phrase",
+  "save-images": "Cliquez sur les icônes ci-dessous pour les télécharger. Si le téléchargement ne se fait pas automatiquement, faites un clic droit ou appuyez longuement pour enregistrer les SVG.",
+  "search-again": "Effectuer une nouvelle recherche",
+  "load-more": "Charger plus",
+  "generate": "Générer",
+  "select-icon": "Sélectionnez une icône à générer"
+}

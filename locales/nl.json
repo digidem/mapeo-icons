@@ -1,0 +1,21 @@
+{
+  "title": "CoMapeo Iconen Generator",
+  "description": "Deze tool kan worden gebruikt om iconen te genereren voor gebruik in CoMapeo of een ander hulpmiddel. Momenteel genereert de tool iconen in SVG-formaat, klaar voor gebruik in een CoMapeo-configuratie.",
+  "config": "Meer informatie over het integreren van deze iconen in een CoMapeo-configuratie vind je hier:",
+  "link": "link",
+  "select-language": "Selecteer je taal",
+  "enter-search": "Voer een of meer woorden in om naar iconen te zoeken",
+  "loading": "laden",
+  "search": "zoeken",
+  "color": "kleur",
+  "name": "naam",
+  "enter-icon-name": "Icoonnaam wijzigen",
+  "error": "we konden geen iconen vinden die gekoppeld zijn aan die zoekterm",
+  "empty-search-error": "Voer ten minste één woord in om naar iconen te zoeken",
+  "loadingMoreError": "dat zijn alle iconen die we konden vinden voor die zoekterm",
+  "save-images": "Klik op de onderstaande iconen om ze te downloaden. Als de download niet automatisch start, klik dan met de rechtermuisknop of houd ingedrukt om de SVG's op te slaan.",
+  "search-again": "Opnieuw zoeken",
+  "load-more": "Meer laden",
+  "generate": "Genereren",
+  "select-icon": "Selecteer een icoon om te genereren"
+}
