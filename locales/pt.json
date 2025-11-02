@@ -11,6 +11,7 @@
   "name": "nome",
   "enter-icon-name": "Mudar o nome do ícone",
   "error": "não encontramos nenhum ícone com essa frase",
+  "empty-search-error": "Por favor, digite pelo menos uma palavra para buscar iconos",
   "loadingMoreError": "esses são todos os ícones que encontramos para essa frase",
   "save-images": "Clique nos ícones a baixo para salva-los",
   "search-again": "Fazer outra busca",

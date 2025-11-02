@@ -51,6 +51,7 @@
               type="text"
               aria-label="term"
               :placeholder="$t('enter-search')"
+              @input="updateSearchInput"
             />
             <button
               type="submit"
@@ -61,6 +62,7 @@
             </button>
           </form>
           <p v-if="error" class="text-red-500">{{ $t('error') }}!</p>
+          <p v-if="emptySearchError" class="text-red-500">{{ $t('empty-search-error') }}!</p>
         </div>
       </div>
       <footer />
@@ -84,15 +86,26 @@ const localePath = useLocalePath()
 const locale = ref(i18n.locale.value || 'en')
 const term = ref('')
 const loading = ref(false)
+const emptySearchError = ref(false)
 
 const handleSearch = () => {
-  if (!term.value.trim()) return
+  if (!term.value.trim()) {
+    emptySearchError.value = true
+    return
+  }
+  emptySearchError.value = false
   loading.value = true
   router.push(localePath(`/images?s=${term.value}&l=${locale.value}`))
 }
 
 const changeLocale = () => {
   i18n.setLocale(locale.value)
-  router.push(localePath(`/images?s=${term.value}&l=${locale.value}`))
+  emptySearchError.value = false
+}
+
+const updateSearchInput = () => {
+  if (term.value.trim()) {
+    emptySearchError.value = false
+  }
 }
 </script>

@@ -11,6 +11,7 @@
   "name": "name",
   "enter-icon-name": "Change icon name",
   "error": "we couldn't find any icons associated with that phrase",
+  "empty-search-error": "Please enter at least one word to search for icons",
   "loadingMoreError": "that's all the icons we could find for that phrase",
   "save-images": "Click the below icons to download them. If download doesn't happen automatically, right-click or touch and hold to save the SVGs.",
   "search-again": "Do another search",

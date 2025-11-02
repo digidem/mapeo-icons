@@ -91,3 +91,7 @@ sw.*
 .output
 .nitro
 .nuxt
+
+# Tests
+test-results/
+playwright-report/
