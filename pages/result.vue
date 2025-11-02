@@ -3,6 +3,31 @@
     class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0"
   >
     <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
+      <div class="flex items-center justify-center pt-8 sm:pt-0 relative">
+        <NuxtLink
+          :to="localePath(`/images?s=${search}&l=${i18n.locale.value}`)"
+          class="absolute left-0 flex items-center text-gray-700 hover:text-gray-900 transition-colors duration-200"
+          aria-label="Go back to icon selection"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 md:h-6 md:w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          <span class="ml-1 text-sm md:text-base hidden sm:inline">{{
+            $t("back")
+          }}</span>
+        </NuxtLink>
+      </div>
       <div
         class="flex flex-col items-center mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6 text-center"
       >

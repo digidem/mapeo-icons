@@ -17,5 +17,6 @@
   "search-again": "Do another search",
   "load-more": "Load more",
   "generate": "Generate",
-  "select-icon": "Select an icon to generate"
+  "select-icon": "Select an icon to generate",
+  "back": "Back"
 }

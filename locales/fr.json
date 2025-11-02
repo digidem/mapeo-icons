@@ -17,5 +17,6 @@
   "search-again": "Effectuer une nouvelle recherche",
   "load-more": "Charger plus",
   "generate": "Générer",
-  "select-icon": "Sélectionnez une icône à générer"
+  "select-icon": "Sélectionnez une icône à générer",
+  "back": "Retour"
 }
