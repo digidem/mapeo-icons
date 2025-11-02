@@ -42,7 +42,7 @@
           <button
             v-else
             :disabled="loadingMore"
-            class="w-250px uppercase bg-gray-900 py-4 px-8 rounded-xl text-light-700"
+            class="w-250px uppercase bg-gray-900 py-4 px-8 rounded-xl text-white"
             @click="loadMore"
           >
             {{ $t(loadingMore ? 'loading' : 'load-more') }}
