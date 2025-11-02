@@ -44,7 +44,7 @@
         <div class="border-t border-dashed mt-4 pt-4">
           <p class="pb-8 text-center">{{ $t("enter-search") }}</p>
           <form
-            class="text-gray-800 flex flex-col md:flex-row flex-nowrap md:justify-between"
+            class="text-gray-800 flex flex-col md:flex-row flex-nowrap md:justify-between items-center"
             @submit.prevent="handleSearch"
           >
             <input
@@ -58,7 +58,7 @@
             <button
               type="submit"
               :disabled="loading"
-              class="w-250px uppercase bg-green-400 text-gray-700 py-4 px-8 mt-4 md:mt-0 rounded-xl md:rounded-none md:rounded-r-lg"
+              class="w-full md:w-250px uppercase bg-green-400 text-gray-700 py-4 px-8 mt-4 md:mt-0 rounded-xl md:rounded-none md:rounded-r-lg"
             >
               {{ $t(loading ? "loading" : "search") }}
             </button>
