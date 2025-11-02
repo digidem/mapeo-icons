@@ -14,17 +14,19 @@
         class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6 pb-500px md:pb-0"
       >
         <div class="flex flex-row flex-wrap justify-center">
-          <div
-            v-for="image in images"
-            :key="image"
-            :class="`p-25px cursor-pointer border-red-500 border-solid rounded ${
-              active === image ? `border-2` : 'border-0'
-            }`"
-            :style="colorized"
-            @click="active = image"
-          >
-            <img width="100" :src="image" />
-          </div>
+          <client-only>
+            <div
+              v-for="image in images"
+              :key="image"
+              :class="`p-25px cursor-pointer border-red-500 border-solid rounded ${
+                active === image ? `border-2` : 'border-0'
+              }`"
+              :style="colorized"
+              @click="active = image"
+            >
+              <img width="100" :src="image" />
+            </div>
+          </client-only>
         </div>
         <p v-if="loadingMoreError" class="text-red-500 py-4 text-center">
           {{ $t("loadingMoreError") }}!
