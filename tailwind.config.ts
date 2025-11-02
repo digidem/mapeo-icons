@@ -35,6 +35,9 @@ export default {
         '100%': '100%',
         '250px': '250px',
       },
+      borderWidth: {
+        '1': '1px',
+      },
     },
   },
   plugins: [],

@@ -6,7 +6,7 @@
       <div class="max-w-lg mx-auto sm:px-1 lg:px-2 mb-5">
         <img class="mx-auto h-100px md:h-150px" src="/logo.webp" />
       </div>
-      <div class="bg-light-50 overflow-hidden shadow sm:rounded-lg p-6">
+      <div class="bg-light-100 overflow-hidden shadow sm:rounded-lg p-6">
         <h1 class="text-center font-bold text-xl md:text-2xl py-4">
           {{ $t('title') }}
         </h1>
