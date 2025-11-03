@@ -47,7 +47,7 @@
         </div>
         <!-- Debug: Show count outside client-only -->
         <div class="text-center text-sm text-gray-500 mt-2">
-          Icons loaded: {{ images.length }}
+          {{ $t("iconsLoaded") }}: {{ images.length }}
         </div>
         <p v-if="loadingMoreError" class="text-red-500 py-4 text-center">
           {{ $t("loadingMoreError") }}!

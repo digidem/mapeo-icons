@@ -18,5 +18,6 @@
   "load-more": "Cargar más",
   "generate": "Generar",
   "select-icon": "Seleccione un icono para generar",
-  "back": "Volver"
+  "back": "Volver",
+  "iconsLoaded": "Iconos cargados"
 }

@@ -18,5 +18,6 @@
   "load-more": "Load more",
   "generate": "Generate",
   "select-icon": "Select an icon to generate",
-  "back": "Back"
+  "back": "Back",
+  "iconsLoaded": "Icons loaded"
 }
