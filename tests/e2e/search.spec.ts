@@ -18,11 +18,12 @@ test.describe("Icon Search Functionality", () => {
     await languageSelect.selectOption({ value: "pt" });
 
     // Wait for the language change to take effect
-    await page.waitForTimeout(500);
-
-    // Check if the search input is visible
     const searchInput = page.locator('input[type="text"]');
     await expect(searchInput).toBeVisible();
+    await expect(searchInput).toHaveAttribute(
+      "placeholder",
+      /Digite uma ou mais/i,
+    );
 
     // Enter search term "cachorro" (dog in Portuguese)
     await searchInput.fill("cachorro");
@@ -66,6 +67,7 @@ test.describe("Icon Search Functionality", () => {
     // Set language to Portuguese
     const languageSelect = page.locator("select").first();
     await languageSelect.selectOption({ value: "pt" });
+    await expect(page.getByPlaceholder(/Digite uma ou mais/i)).toBeVisible();
 
     // Try searching without entering text
     const searchButton = page.getByRole("button", { name: /buscar/i });
@@ -86,7 +88,7 @@ test.describe("Icon Search Functionality", () => {
 
     // Test switching to Portuguese
     await languageSelect.selectOption({ value: "pt" });
-    await expect(page.getByPlaceholder(/Digite um ou mais/i)).toBeVisible();
+    await expect(page.getByPlaceholder(/Digite uma ou mais/i)).toBeVisible();
 
     // Test switching to English
     await languageSelect.selectOption({ value: "en" });
