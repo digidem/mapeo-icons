@@ -33,19 +33,21 @@
         class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6 pb-500px md:pb-0"
       >
         <div class="flex flex-row flex-wrap justify-center">
-          <client-only>
-            <div
-              v-for="image in images"
-              :key="image"
-              :class="`p-25px cursor-pointer border-red-500 border-solid rounded ${
-                active === image ? `border-2` : 'border-0'
-              }`"
-              :style="colorized"
-              @click="active = image"
-            >
-              <img width="100" :src="image" />
-            </div>
-          </client-only>
+          <div
+            v-for="(image, index) in images"
+            :key="`${index}-${image}`"
+            :class="`p-25px cursor-pointer border-red-500 border-solid rounded ${
+              active === image ? `border-2` : 'border-0'
+            }`"
+            :style="colorized"
+            @click="active = image"
+          >
+            <img width="100" :src="image" />
+          </div>
+        </div>
+        <!-- Debug: Show count outside client-only -->
+        <div class="text-center text-sm text-gray-500 mt-2">
+          Icons loaded: {{ images.length }}
         </div>
         <p v-if="loadingMoreError" class="text-red-500 py-4 text-center">
           {{ $t("loadingMoreError") }}!
@@ -87,7 +89,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import colorize from "@/libs/colorize";
 
 // Lazy load ColorPicker for client-only rendering
@@ -105,18 +107,18 @@ const s = (route.query.s as string) || "";
 const l = (route.query.l as string) || "en";
 const search = ref(s); // Define search variable
 
-const { data: imagesData, error: fetchError } = await useFetch(
-  `/api/search?s=${s}&l=${l}`,
-);
-const images = ref<string[]>(
-  Array.isArray(imagesData.value) ? imagesData.value : [],
-);
+const prefetchedIcons = useState<string[]>("prefetchedIcons", () => []);
+const prefetchedSearchTerm = useState<string>("prefetchedSearchTerm", () => "");
+const prefetchedLocale = useState<string>("prefetchedLocale", () => "en");
+const prefetchedPage = useState<number>("prefetchedPage", () => 0);
 
+const images = ref<string[]>([]);
 const active = ref<string | null>(null);
 const loading = ref(false);
 const loadingMore = ref(false);
 const loadingMoreError = ref(false);
 const pagination = ref(1);
+
 const color = ref({
   hex: "#194d33",
   rgba: { r: 25, g: 77, b: 51, a: 1 },
@@ -125,12 +127,58 @@ const color = ref({
 
 const colorized = computed(() => colorize(color.value?.hex));
 
-onMounted(() => {
-  if (fetchError.value) {
-    let error = "error=true";
-    router.push(localePath(`/?${error}`));
-  } else if (Array.isArray(images.value) && images.value.length > 0) {
-    active.value = images.value[0];
+const applyPrefetchedIcons = () => {
+  if (
+    prefetchedIcons.value.length > 0 &&
+    prefetchedSearchTerm.value === search.value &&
+    prefetchedLocale.value === l
+  ) {
+    images.value = [...prefetchedIcons.value];
+    pagination.value = prefetchedPage.value || 1;
+    if (images.value.length > 0) {
+      active.value = images.value[0];
+    }
+    prefetchedIcons.value = [];
+    prefetchedPage.value = 0;
+    prefetchedSearchTerm.value = "";
+    prefetchedLocale.value = l;
+  }
+};
+
+applyPrefetchedIcons();
+
+// Fetch images on mount if none were prefetched
+onMounted(async () => {
+  if (images.value.length > 0) {
+    return;
+  }
+  try {
+    console.log("onMounted: Fetching images for s=", s, "l=", l);
+    const data = await $fetch(`/api/search?s=${s}&l=${l}`);
+    console.log(
+      "onMounted: Received data, type:",
+      typeof data,
+      "isArray:",
+      Array.isArray(data),
+    );
+    if (Array.isArray(data)) {
+      images.value = data;
+      console.log(
+        "onMounted: Set images.value to length:",
+        images.value.length,
+      );
+      if (images.value.length > 0) {
+        active.value = images.value[0];
+      }
+    }
+  } catch (err) {
+    console.error("onMounted: Error fetching images:", err);
+    router.push(
+      localePath({
+        path: "/",
+        query: { error: "true" },
+      }),
+    );
   }
 });
 
@@ -142,11 +190,14 @@ const handleGenerate = () => {
   if (!active.value) return;
   loading.value = true;
   router.push(
-    localePath(
-      `/result?image=${active.value}&color=${
-        color.value.hex.split("#")[1]
-      }&search=${search.value}`,
-    ),
+    localePath({
+      path: "/result",
+      query: {
+        image: active.value,
+        color: color.value.hex.split("#")[1],
+        search: search.value,
+      },
+    }),
   );
 };
 

@@ -74,7 +74,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref, nextTick } from "vue";
 
 defineProps({
   error: {
@@ -92,18 +92,63 @@ const term = ref("");
 const loading = ref(false);
 const emptySearchError = ref(false);
 
-const handleSearch = () => {
+const prefetchedIcons = useState<string[]>("prefetchedIcons", () => []);
+const prefetchedSearchTerm = useState<string>("prefetchedSearchTerm", () => "");
+const prefetchedLocale = useState<string>("prefetchedLocale", () => "en");
+const prefetchedPage = useState<number>("prefetchedPage", () => 0);
+
+const handleSearch = async () => {
   if (!term.value.trim()) {
     emptySearchError.value = true;
     return;
   }
   emptySearchError.value = false;
   loading.value = true;
-  router.push(localePath(`/images?s=${term.value}&l=${locale.value}`));
+
+  try {
+    const query = new URLSearchParams({
+      s: term.value,
+      l: locale.value,
+      p: "1",
+    }).toString();
+
+    const response = await $fetch(`/api/search?${query}`);
+
+    if (Array.isArray(response)) {
+      prefetchedIcons.value = response;
+    } else {
+      prefetchedIcons.value = [];
+    }
+
+    prefetchedSearchTerm.value = term.value;
+    prefetchedLocale.value = locale.value;
+    prefetchedPage.value = 1;
+
+    const imagesPath = localePath({
+      path: "/images",
+      query: {
+        s: term.value,
+        l: locale.value,
+      },
+    });
+
+    router.push(imagesPath);
+  } catch (err) {
+    console.error("handleSearch: prefetch failed", err);
+    router.push(
+      localePath({
+        path: "/",
+        query: { error: "true" },
+      }),
+    );
+  } finally {
+    loading.value = false;
+  }
 };
 
-const changeLocale = () => {
-  i18n.setLocale(locale.value);
+const changeLocale = async () => {
+  await i18n.setLocale(locale.value);
+  await nextTick();
   emptySearchError.value = false;
 };
 
@@ -112,4 +157,11 @@ const updateSearchInput = () => {
     emptySearchError.value = false;
   }
 };
+
+onMounted(() => {
+  prefetchedIcons.value = [];
+  prefetchedSearchTerm.value = "";
+  prefetchedPage.value = 0;
+  prefetchedLocale.value = locale.value;
+});
 </script>
