@@ -62,44 +62,93 @@ test.describe("Icon Search Functionality", () => {
   });
 
   test("should handle empty search gracefully", async ({ page }) => {
-    await page.goto("/");
+    // Navigate with networkidle to ensure page is fully loaded
+    await page.goto("/", { waitUntil: "networkidle" });
+
+    // Wait for the page to load completely
+    await expect(page).toHaveTitle(/CoMapeo Icons Generator/i, {
+      timeout: 15000,
+    });
 
     // Set language to Portuguese
     const languageSelect = page.locator("select").first();
+    await expect(languageSelect).toBeVisible();
     await languageSelect.selectOption({ value: "pt" });
-    await expect(page.getByPlaceholder(/Digite uma ou mais/i)).toBeVisible();
+
+    // Wait for the language change to take effect by checking the input element
+    const searchInput = page.locator('input[type="text"]');
+    await expect(searchInput).toBeVisible();
+    await expect(searchInput).toHaveAttribute(
+      "placeholder",
+      /Digite uma ou mais/i,
+    );
 
     // Try searching without entering text
     const searchButton = page.getByRole("button", { name: /buscar/i });
     await searchButton.click();
 
-    // Should either show error or default results
-    // Just verify the page doesn't crash
-    await page.waitForTimeout(2000);
-    const pageContent = await page.content();
-    expect(pageContent).toBeTruthy();
+    // Verify error message is displayed in Portuguese
+    const errorMessage = page.getByText(
+      /Por favor, digite pelo menos uma palavra/i,
+    );
+    await expect(errorMessage).toBeVisible({ timeout: 5000 });
+
+    // Verify URL hasn't changed to results page (no /images in URL)
+    await expect(page).not.toHaveURL(/\/images/, { timeout: 2000 });
   });
 
   test("should switch languages correctly", async ({ page }) => {
-    await page.goto("/");
+    // Navigate with networkidle to ensure page is fully loaded
+    await page.goto("/", { waitUntil: "networkidle" });
 
-    // Get language selector
+    // Wait for the page to load completely
+    await expect(page).toHaveTitle(/CoMapeo Icons Generator/i, {
+      timeout: 15000,
+    });
+
+    // Get language selector and search input
     const languageSelect = page.locator("select").first();
+    await expect(languageSelect).toBeVisible();
+    const searchInput = page.locator('input[type="text"]');
+    await expect(searchInput).toBeVisible();
 
     // Test switching to Portuguese
     await languageSelect.selectOption({ value: "pt" });
-    await expect(page.getByPlaceholder(/Digite uma ou mais/i)).toBeVisible();
+    await expect(searchInput).toHaveAttribute(
+      "placeholder",
+      /Digite uma ou mais/i,
+    );
 
     // Test switching to English
     await languageSelect.selectOption({ value: "en" });
-    await expect(page.getByPlaceholder(/Enter one or more/i)).toBeVisible();
+    await expect(searchInput).toHaveAttribute(
+      "placeholder",
+      /Enter one or more/i,
+    );
 
     // Test switching to Spanish
     await languageSelect.selectOption({ value: "es" });
-    await expect(page.getByPlaceholder(/Introduce uno o más/i)).toBeVisible();
+    await expect(searchInput).toHaveAttribute(
+      "placeholder",
+      /Introduce una o más/i,
+    );
 
     // Test switching to Thai
     await languageSelect.selectOption({ value: "th" });
-    await expect(page.getByPlaceholder(/ป้อนคำหนึ่งคำ/i)).toBeVisible();
+    await expect(searchInput).toHaveAttribute("placeholder", /ป้อนคำหนึ่งคำ/i);
+
+    // Test switching to Dutch
+    await languageSelect.selectOption({ value: "nl" });
+    await expect(searchInput).toHaveAttribute(
+      "placeholder",
+      /Voer een of meer/i,
+    );
+
+    // Test switching to French
+    await languageSelect.selectOption({ value: "fr" });
+    await expect(searchInput).toHaveAttribute(
+      "placeholder",
+      /Entrez un ou plusieurs/i,
+    );
   });
 });
