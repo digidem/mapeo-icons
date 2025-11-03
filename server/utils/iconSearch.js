@@ -9,7 +9,7 @@ module.exports = async (noun, locale, pagination) => {
   console.log(`Downloading page ${pagination} translated: ${translation}`);
   const { NOUN_KEY, NOUN_SECRET, ICONS_TO_DOWNLOAD } = process.env;
   const resLimit = parseInt(ICONS_TO_DOWNLOAD);
-  const limit = typeof resLimit === "number" ? resLimit : 3;
+  const limit = !isNaN(resLimit) && resLimit > 0 ? resLimit : 10;
   console.log("Number of icons to search for:", limit);
   const oauth = new OAuth.OAuth(
     "http://api.thenounproject.com",
