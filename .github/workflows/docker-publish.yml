@@ -1,32 +1,11 @@
 name: Docker Build & Publish
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Playwright Tests"]
+    types: [completed]
     branches:
       - master
-    paths:
-      # Application code
-      - api/**
-      - server/**
-      - pages/**
-      - components/**
-      - libs/**
-      - locales/**
-      - assets/**
-      - public/**
-      - store/**
-      # Configuration files
-      - Dockerfile
-      - .dockerignore
-      - package.json
-      - package-lock.json
-      - nuxt.config.js
-      - tailwind.config.ts
-      - i18n.config.ts
-      - postcss.config.ts
-      - tsconfig.json
-      # Workflow itself
-      - .github/workflows/docker-publish.yml
   # Allow manual trigger
   workflow_dispatch:
 
@@ -37,6 +16,7 @@ env:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     permissions:
       contents: read
     steps:

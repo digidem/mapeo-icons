@@ -1,0 +1,74 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      # Application code
+      - api/**
+      - server/**
+      - pages/**
+      - components/**
+      - libs/**
+      - locales/**
+      - assets/**
+      - public/**
+      - store/**
+      # Configuration files
+      - package.json
+      - package-lock.json
+      - nuxt.config.js
+      - tsconfig.json
+      - playwright.config.ts
+      # Test files
+      - tests/**
+      # Workflow itself
+      - .github/workflows/test.yml
+  pull_request:
+    branches:
+      - master
+    types: [opened, synchronize, reopened]
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Create .env file
+        run: |
+          cat > .env << EOF
+          NOUN_KEY=${{ secrets.NOUN_KEY }}
+          NOUN_SECRET=${{ secrets.NOUN_SECRET }}
+          ICONS_TO_DOWNLOAD=5
+          CORS=all
+          EOF
+
+      - name: Run Playwright tests
+        run: npm test
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
