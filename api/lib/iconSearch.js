@@ -1,9 +1,9 @@
-const OAuth = require("oauth");
-const translate = require("./translate");
+import OAuth from "oauth";
+import translate from "./translate.js";
 
-module.exports = async (noun, locale, pagination) => {
+export default async (noun, locale, pagination) => {
   if (!noun || typeof noun !== "string") throw Error;
-  translation = noun;
+  let translation = noun;
   if (locale !== "en") translation = await translate(noun, locale);
   translation = translation.split(" ").join("%20");
   console.log(`Downloading page ${pagination} translated: ${translation}`);

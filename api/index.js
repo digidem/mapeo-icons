@@ -1,9 +1,9 @@
-require("dotenv").config();
+import "dotenv/config";
+import express from "express";
+import cors from "cors";
+import search from "./lib/iconSearch.js";
+import generate from "./lib/generateMapeoIcon.js";
 
-const express = require("express");
-const cors = require("cors"); // Added line for cors
-const search = require("./lib/iconSearch");
-const generate = require("./lib/generateMapeoIcon");
 const { CORS } = process.env;
 const app = express();
 const corsOptions = {

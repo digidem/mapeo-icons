@@ -153,20 +153,9 @@ onMounted(async () => {
     return;
   }
   try {
-    console.log("onMounted: Fetching images for s=", s, "l=", l);
     const data = await $fetch(`/api/search?s=${s}&l=${l}`);
-    console.log(
-      "onMounted: Received data, type:",
-      typeof data,
-      "isArray:",
-      Array.isArray(data),
-    );
     if (Array.isArray(data)) {
       images.value = data;
-      console.log(
-        "onMounted: Set images.value to length:",
-        images.value.length,
-      );
       if (images.value.length > 0) {
         active.value = images.value[0];
       }

@@ -1,8 +1,8 @@
-const potrace = require("potrace");
-const svgToMiniDataURI = require("mini-svg-data-uri");
-const { optimize } = require("svgo");
+import potrace from "potrace";
+import svgToMiniDataURI from "mini-svg-data-uri";
+import { optimize } from "svgo";
 
-module.exports = async (previewUrl, color = "orange") =>
+export default async (previewUrl, color = "orange") =>
   await new Promise((resolve, reject) => {
     potrace.trace(previewUrl, { color }, (err, svg) => {
       const result = optimize(svg, {

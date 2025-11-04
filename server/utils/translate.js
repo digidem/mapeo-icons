@@ -1,4 +1,4 @@
-const { translate } = require("bing-translate-api");
+import { translate } from "bing-translate-api";
 
 async function runTranslate(searchTerm, locale) {
   const translation = await translate(searchTerm, locale, "en", true);
@@ -6,6 +6,6 @@ async function runTranslate(searchTerm, locale) {
   return translation.translation;
 }
 
-module.exports = async (searchTerm, locale) => {
+export default async (searchTerm, locale) => {
   return await runTranslate(searchTerm, locale);
 };
