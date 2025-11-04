@@ -2,15 +2,15 @@
 
 ## Project Structure & Module Organization
 
-- `pages/` drives Nuxt 4 routing, while shared UI lives in `components/`; drop reusable logic in `libs/` and server handlers under `api/`.
+- `pages/` drives Nuxt 4 routing, while shared UI lives in `components/`; drop reusable logic in `libs/` and server handlers under `server/api/`.
 - Static assets go in `public/`, processed styles or fonts in `assets/`, and localized strings in `locales/`; Tailwind config sits in `tailwind.config.ts`.
 - End-to-end flows are in `tests/e2e/`, and persistent state belongs in `store/` modules or Nuxt composables.
 
 ## Build, Test, and Development Commands
 
 - `npm install` (or `npm ci` in CI) aligns dependencies; repeat whenever `package-lock.json` changes.
-- `npm run dev` serves the app at `http://localhost:3000`; use `npm run build && npm run start` to verify the production bundle.
-- `npm run test`, `npm run test:headed`, and `npm run test:ui` execute the Playwright suite in headless, headed, or interactive modes.
+- `npm run dev` serves the app at `http://localhost:3000` (Playwright boots it on an alternate port when testing); use `npm run build && npm run preview` to verify the production bundle.
+- `npm run test`, `npm run test:headed`, and `npm run test:ui` execute the Playwright suite in headless, headed, or interactive modes—make sure the chosen port is free.
 - `npm run lint:js`, `npm run lint:style`, and `npm run lintfix` keep ESLint, Stylelint, and Prettier happy; run before pushing.
 
 ## Coding Style & Naming Conventions

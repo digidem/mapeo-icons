@@ -1,7 +1,9 @@
+import generateMapeoIcon from "~/server/utils/generateMapeoIcon";
+
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
-  const image = query.image as string;
-  const color = query.color as string;
+  const image = typeof query.image === "string" ? query.image : "";
+  const color = typeof query.color === "string" ? query.color : "";
 
   if (!image || !color) {
     throw createError({
@@ -11,16 +13,14 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    // Dynamic import for CommonJS module
-    const generateModule = await import("~/server/utils/generateMapeoIcon.js");
-    const generate = generateModule.default || generateModule;
-    const data = await generate(image, `#${color}`);
-    return [{ svg: data }];
+    const normalizedColor = color.startsWith("#") ? color : `#${color}`;
+    const svg = await generateMapeoIcon(image, normalizedColor);
+    return [{ svg }];
   } catch (err: any) {
     console.error(err);
     throw createError({
       statusCode: 500,
-      statusMessage: "Generation failed",
+      statusMessage: err?.message ?? "Generation failed",
     });
   }
 });

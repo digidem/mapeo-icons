@@ -1,20 +1,34 @@
+import iconSearch from "~/server/utils/iconSearch";
+
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
-  const s = (query.s as string) || "tree";
-  const l = (query.l as string) || "pt";
-  const p = parseInt((query.p as string) || "1");
+  const search = typeof query.s === "string" ? query.s : "";
+  const locale = typeof query.l === "string" ? query.l : "pt";
+  const pageValue = typeof query.p === "string" ? query.p : "1";
+  const page = Number.parseInt(pageValue, 10);
+
+  const fallbackSearch = search?.trim().length ? search.trim() : "tree";
+  const sanitizedLocale = locale || "pt";
+  const pagination = Number.isNaN(page) || page < 1 ? 1 : page;
+  const runtimeConfig = useRuntimeConfig(event);
+  const configuredLimit = Number.parseInt(
+    String(runtimeConfig.iconsPerPage ?? ""),
+    10,
+  );
+  const limit = Number.isNaN(configuredLimit) ? undefined : configuredLimit;
 
   try {
-    // Dynamic import for CommonJS module
-    const searchModule = await import("~/server/utils/iconSearch.js");
-    const search = searchModule.default || searchModule;
-    const data = await search(s, l, p);
+    const data = await iconSearch(fallbackSearch, sanitizedLocale, pagination, {
+      nounKey: runtimeConfig.nounProjectKey,
+      nounSecret: runtimeConfig.nounProjectSecret,
+      limit,
+    });
     return data;
   } catch (err: any) {
     console.error(err);
     throw createError({
       statusCode: 500,
-      statusMessage: err.data || "Search failed",
+      statusMessage: err?.message ?? "Search failed",
     });
   }
 });

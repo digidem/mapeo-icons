@@ -33,12 +33,13 @@
             class="px-2 md:px-4 py-1 md:py-2"
             @change="changeLocale"
           >
-            <option value="en">English</option>
-            <option value="pt">Português</option>
-            <option value="es">Español</option>
-            <option value="th">ไทย</option>
-            <option value="nl">Nederlands</option>
-            <option value="fr">Français</option>
+            <option
+              v-for="availableLocale in availableLocales"
+              :key="availableLocale.code"
+              :value="availableLocale.code"
+            >
+              {{ availableLocale.name }}
+            </option>
           </select>
         </div>
         <div class="border-t border-dashed mt-4 pt-4">
@@ -74,7 +75,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref, nextTick } from "vue";
+import { onMounted, ref, nextTick, computed } from "vue";
 
 defineProps({
   error: {
@@ -91,6 +92,21 @@ const locale = ref(i18n.locale.value || "en");
 const term = ref("");
 const loading = ref(false);
 const emptySearchError = ref(false);
+
+const availableLocales = computed(() => {
+  const locales = i18n.locales.value;
+  if (!Array.isArray(locales)) {
+    return [] as Array<{ code: string; name: string }>;
+  }
+
+  return locales.map((localeConfig) => ({
+    code: localeConfig.code,
+    name:
+      "name" in localeConfig && typeof localeConfig.name === "string"
+        ? localeConfig.name
+        : localeConfig.code,
+  }));
+});
 
 const prefetchedIcons = useState<string[]>("prefetchedIcons", () => []);
 const prefetchedSearchTerm = useState<string>("prefetchedSearchTerm", () => "");

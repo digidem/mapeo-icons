@@ -19,19 +19,28 @@ export default defineNuxtConfig({
   // Global CSS
   css: ["~/assets/main.css"],
 
-  // Auto import components
-  components: true,
-
   // Modules
-  modules: [
-    // https://i18n.nuxtjs.org
-    "@nuxtjs/i18n",
-    // https://tailwindcss.nuxtjs.org
-    "@nuxtjs/tailwindcss",
-  ],
+  modules: ["@nuxtjs/i18n", "@nuxtjs/tailwindcss"],
+
+  runtimeConfig: {
+    nounProjectKey: process.env.NOUN_KEY,
+    nounProjectSecret: process.env.NOUN_SECRET,
+    iconsPerPage: process.env.ICONS_TO_DOWNLOAD,
+  },
+
+  nitro: {
+    externals: {
+      external: ["svgo", "css-tree", "potrace"],
+    },
+  },
 
   // i18n configuration
   i18n: {
+    langDir: "locales/",
+    lazy: true,
+    defaultLocale: "en",
+    strategy: "prefix_except_default",
+    vueI18n: "./i18n.config.ts",
     locales: [
       { code: "en", name: "English", file: "en.json" },
       { code: "pt", name: "Português", file: "pt.json" },
@@ -40,17 +49,12 @@ export default defineNuxtConfig({
       { code: "nl", name: "Nederlands", file: "nl.json" },
       { code: "fr", name: "Français", file: "fr.json" },
     ],
-    defaultLocale: "en",
-    strategy: "prefix_except_default",
-    langDir: "locales",
-    lazy: true,
-    restructureDir: ".",
-  },
-
-  vite: {
-    ssr: {
-      external: ["vue-color"],
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+      redirectOn: "root",
     },
+    restructureDir: ".",
   },
 
   devtools: { enabled: true },

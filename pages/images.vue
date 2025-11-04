@@ -45,7 +45,6 @@
             <img width="100" :src="image" />
           </div>
         </div>
-        <!-- Debug: Show count outside client-only -->
         <div class="text-center text-sm text-gray-500 mt-2">
           {{ $t("iconsLoaded") }}: {{ images.length }}
         </div>
@@ -89,7 +88,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, defineAsyncComponent } from "vue";
 import colorize from "@/libs/colorize";
 
 // Lazy load ColorPicker for client-only rendering
@@ -112,6 +111,12 @@ const prefetchedSearchTerm = useState<string>("prefetchedSearchTerm", () => "");
 const prefetchedLocale = useState<string>("prefetchedLocale", () => "en");
 const prefetchedPage = useState<number>("prefetchedPage", () => 0);
 
+type SelectedColor = {
+  hex: string;
+  rgba?: { r: number; g: number; b: number; a: number };
+  hsv?: { h: number; s: number; v: number };
+};
+
 const images = ref<string[]>([]);
 const active = ref<string | null>(null);
 const loading = ref(false);
@@ -119,7 +124,7 @@ const loadingMore = ref(false);
 const loadingMoreError = ref(false);
 const pagination = ref(1);
 
-const color = ref({
+const color = ref<SelectedColor>({
   hex: "#194d33",
   rgba: { r: 25, g: 77, b: 51, a: 1 },
   hsv: { h: 146, s: 68, v: 30 },
@@ -171,7 +176,7 @@ onMounted(async () => {
   }
 });
 
-const updateColor = (newColor: any) => {
+const updateColor = (newColor: SelectedColor) => {
   color.value = newColor;
 };
 
@@ -183,7 +188,7 @@ const handleGenerate = () => {
       path: "/result",
       query: {
         image: active.value,
-        color: color.value.hex.split("#")[1],
+        color: color.value.hex.replace(/^#/, ""),
         search: search.value,
       },
     }),
@@ -192,6 +197,7 @@ const handleGenerate = () => {
 
 const loadMore = async () => {
   loadingMore.value = true;
+  loadingMoreError.value = false;
   pagination.value = pagination.value + 1;
   try {
     const response = await $fetch(

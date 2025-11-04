@@ -1,80 +1,53 @@
-# CoMapeo icons
+# CoMapeo Icons
 
-A simple API and GUI for translating search terms, and scraping them from icon repositories. It's meant to work with [CoMapeo](https://comapeo.app/) and [Mapeo](https://mapeo.app), so it it also let's user choose icon colors, and renames them according to categories standards.
+A Nuxt 4 application for discovering and generating colour-adjusted icon assets that can be dropped straight into [CoMapeo](https://comapeo.app/) or [Mapeo](https://mapeo.app) configurations. The app wraps The Noun Project API, provides on-the-fly translations, and exports ready-to-use SVG data URIs.
 
-## Build Setup
+## Getting Started
 
-First start with an .env file:
+1. Duplicate the example environment file and add your credentials for The Noun Project API:
 
-```
-cp .env.example .env
-```
+   ```bash
+   cp .env.example .env
+   ```
 
-Then get [The Noun Project](https://thenounproject.com/developers/apps/) API key and secret and set them on the `.env` file.
+2. Install dependencies and launch the development server:
 
-Finally:
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-```bash
-# install dependencies
-$ yarn install
+3. Visit `http://localhost:3000` and start searching.
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+## Available Scripts
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+- `npm run dev` – start the Vite-powered Nuxt dev server
+- `npm run build` – compile the production bundle
+- `npm run preview` – serve the built Nitro output locally
+- `npm run lint` – run ESLint, Stylelint and Prettier checks
+- `npm run lintfix` – autofix supported lint issues and format files
+- `npm run test` – execute the Playwright end-to-end suite (headless); it starts the dev server on port `4173`, so keep that port free
+- `npm run test:headed` / `npm run test:ui` – run Playwright locally in headed or UI mode
 
-# generate static project
-$ yarn generate
-```
+## Environment
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+The application expects the following variables in `.env`:
 
-## Special Directories
+- `NOUN_KEY` – The Noun Project consumer key
+- `NOUN_SECRET` – The Noun Project consumer secret
+- `ICONS_TO_DOWNLOAD` _(optional)_ – number of icons to fetch per request
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+Restart the dev server whenever you update these values.
 
-### `assets`
+## Project Structure
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+- `pages/` – route-driven screens backed by the Nuxt router
+- `components/` – shared Vue components used across pages
+- `server/` – Nitro API endpoints and supporting utilities
+- `libs/` – browser-side utilities (e.g. colour filter generator)
+- `locales/` – JSON translation bundles consumed by `@nuxtjs/i18n`
+- `public/` – static assets served directly without processing
+- `tests/e2e/` – Playwright scenarios covering key user journeys
+- `types/` – TypeScript shims for external libraries without typings
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+The project relies on Tailwind CSS for styling and Playwright for UI verification. See `package.json` for additional scripts and tooling.
