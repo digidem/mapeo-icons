@@ -10,17 +10,16 @@ export default defineEventHandler(async (event) => {
   const fallbackSearch = search?.trim().length ? search.trim() : "tree";
   const sanitizedLocale = locale || "pt";
   const pagination = Number.isNaN(page) || page < 1 ? 1 : page;
-  const runtimeConfig = useRuntimeConfig(event);
   const configuredLimit = Number.parseInt(
-    String(runtimeConfig.iconsPerPage ?? ""),
+    String(process.env.ICONS_TO_DOWNLOAD ?? ""),
     10,
   );
   const limit = Number.isNaN(configuredLimit) ? undefined : configuredLimit;
 
   try {
     const data = await iconSearch(fallbackSearch, sanitizedLocale, pagination, {
-      nounKey: runtimeConfig.nounProjectKey,
-      nounSecret: runtimeConfig.nounProjectSecret,
+      nounKey: process.env.NOUN_KEY || "",
+      nounSecret: process.env.NOUN_SECRET || "",
       limit,
     });
     return data;
