@@ -153,12 +153,22 @@ const applyPrefetchedIcons = () => {
 applyPrefetchedIcons();
 
 // Fetch images on mount if none were prefetched
+const buildSearchUrl = (pageValue: number) => {
+  const params = new URLSearchParams({
+    s,
+    l,
+    p: String(pageValue),
+  });
+
+  return `/api/search?${params.toString()}`;
+};
+
 onMounted(async () => {
   if (images.value.length > 0) {
     return;
   }
   try {
-    const data = await $fetch(`/api/search?s=${s}&l=${l}`);
+    const data = await $fetch(buildSearchUrl(1));
     if (Array.isArray(data)) {
       images.value = data;
       if (images.value.length > 0) {
@@ -200,9 +210,7 @@ const loadMore = async () => {
   loadingMoreError.value = false;
   pagination.value = pagination.value + 1;
   try {
-    const response = await $fetch(
-      `/api/search?s=${s}&l=${l}&p=${pagination.value}`,
-    );
+    const response = await $fetch(buildSearchUrl(pagination.value));
     if (Array.isArray(images.value) && Array.isArray(response)) {
       images.value = [...images.value, ...response];
     }
