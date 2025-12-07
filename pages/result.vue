@@ -39,7 +39,9 @@
           aria-label="term"
         />
         <div class="mt-4 pt-4 mb-12 text-gray-800 border-t border-dashed">
-          <p class="md:px-12">
+          <p
+            class="md:px-12 max-w-prose md:max-w-2xl mx-auto leading-relaxed text-center"
+          >
             {{ $t("save-images") }}
           </p>
         </div>
