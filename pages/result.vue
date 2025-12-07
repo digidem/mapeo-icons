@@ -45,22 +45,13 @@
         </div>
         <div>
           <a
-            :download="`${name}-100px.svg`"
+            :download="`${name}.svg`"
             :href="image"
             target="_blank"
             class="flex flex-col items-center"
           >
             <img :src="image" :alt="name" height="100" width="100" />
-            <p class="pb-12">{{ `${name}-100px.svg` }}</p>
-          </a>
-          <a
-            :download="`${name}-24px.svg`"
-            :href="image"
-            target="_blank"
-            class="flex flex-col items-center"
-          >
-            <img :src="image" :alt="name" height="24" width="24" />
-            <p class="pb-12">{{ `${name}-24px.svg` }}</p>
+            <p class="pb-12">{{ `${name}.svg` }}</p>
           </a>
         </div>
         <button
