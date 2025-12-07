@@ -83,10 +83,10 @@
           </button>
         </div>
       </div>
-      <div class="flex items-center justify-center pt-8 sm:pt-6 relative">
+      <div class="flex items-center justify-center pt-8 sm:pt-6 relative mb-8">
         <NuxtLink
           :to="localePath('/')"
-          class="flex items-center text-gray-700 hover:text-gray-900 transition-colors duration-200"
+          class="absolute left-0 flex items-center text-gray-700 hover:text-gray-900 transition-colors duration-200"
           aria-label="Go back to search"
         >
           <svg
