@@ -19,5 +19,7 @@
   "generate": "Générer",
   "select-icon": "Sélectionnez une icône à générer",
   "back": "Retour",
-  "iconsLoaded": "Icônes chargées"
+  "iconsLoaded": "Icônes chargées",
+  "copy-svg": "Copier le SVG",
+  "copied": "Copié !"
 }
