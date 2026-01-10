@@ -21,5 +21,8 @@
   "back": "กลับ",
   "iconsLoaded": "ไอคอนที่โหลดแล้ว",
   "copy-svg": "คัดลอก SVG",
-  "copied": "คัดลอกแล้ว!"
+  "copied": "คัดลอกแล้ว!",
+  "select-color": "เลือกสี",
+  "done": "เสร็จ",
+  "close": "ปิด"
 }

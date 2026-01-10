@@ -21,5 +21,8 @@
   "back": "Back",
   "iconsLoaded": "Icons loaded",
   "copy-svg": "Copy SVG",
-  "copied": "Copied!"
+  "copied": "Copied!",
+  "select-color": "Select color",
+  "done": "Done",
+  "close": "Close"
 }
