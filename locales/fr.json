@@ -21,5 +21,8 @@
   "back": "Retour",
   "iconsLoaded": "Icônes chargées",
   "copy-svg": "Copier le SVG",
-  "copied": "Copié !"
+  "copied": "Copié !",
+  "select-color": "Sélectionner la couleur",
+  "done": "Terminé",
+  "close": "Fermer"
 }

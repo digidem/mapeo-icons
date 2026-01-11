@@ -30,7 +30,7 @@
         <h1 class="text-2xl">{{ $t("select-icon") }}</h1>
       </div>
       <div
-        class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6 pb-500px md:pb-0"
+        class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6 pb-44 md:pb-6"
       >
         <div class="flex flex-row flex-wrap justify-center">
           <div
@@ -52,7 +52,7 @@
           {{ $t("loadingMoreError") }}!
         </p>
         <div
-          class="flex flex-col text-gray-800 md:border-t md:border-dashed fixed right-2 left-2 md:static bottom-4 md:bottom-0 md:flex-row md:justify-around items-center"
+          class="flex flex-col text-gray-800 md:border-t md:border-dashed fixed right-2 left-2 md:static bottom-4 md:bottom-0 md:flex-row md:justify-around items-center gap-2 md:gap-0 bg-white md:bg-transparent p-3 md:p-0 rounded-xl md:rounded-none shadow-lg md:shadow-none"
         >
           <NuxtLink v-if="loadingMoreError" :to="localePath('/')">
             <button
@@ -69,11 +69,10 @@
           >
             {{ $t(loadingMore ? "loading" : "load-more") }}
           </button>
-          <div class="flex justify-center py-4">
-            <client-only>
-              <ColorPicker :color="color.hex" @changeColor="updateColor" />
-            </client-only>
-          </div>
+          <ColorPickerMobile
+            :model-value="color.hex"
+            @update:model-value="updateColor"
+          />
           <button
             :disabled="loading || !active"
             class="w-250px uppercase bg-green-400 py-4 px-8 rounded-xl"
@@ -113,15 +112,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, defineAsyncComponent } from "vue";
+import { ref, onMounted, computed } from "vue";
 import colorize from "@/libs/colorize";
-
-// Lazy load ColorPicker for client-only rendering
-const ColorPicker = defineAsyncComponent(
-  () =>
-    // @ts-ignore - vue-colorpicker doesn't have proper types
-    import("@caohenghu/vue-colorpicker"),
-);
 
 const route = useRoute();
 const router = useRouter();

@@ -1,9 +1,25 @@
 import { test, expect } from "@playwright/test";
 
+// Mock icon URLs for testing (SVG data URIs)
+const mockIconUrls = [
+  "https://static.thenounproject.com/png/1-200.png",
+  "https://static.thenounproject.com/png/2-200.png",
+  "https://static.thenounproject.com/png/3-200.png",
+];
+
 test.describe("Icon Search Functionality", () => {
   test('should search for "cachorro" in Portuguese and load icons', async ({
     page,
   }) => {
+    // Mock the search API to avoid dependency on external Noun Project API
+    await page.route("**/api/search**", async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(mockIconUrls),
+      });
+    });
+
     // Navigate to the app and wait until there are no more network connections
     await page.goto("/", { waitUntil: "networkidle" });
 
