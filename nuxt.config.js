@@ -138,6 +138,7 @@ export default defineNuxtConfig({
       { code: "th", name: "ไทย", file: "th.json" },
       { code: "nl", name: "Nederlands", file: "nl.json" },
       { code: "fr", name: "Français", file: "fr.json" },
+      { code: "id", name: "Bahasa Indonesia", file: "id.json" },
     ],
     detectBrowserLanguage: {
       useCookie: true,
