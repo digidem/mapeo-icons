@@ -110,9 +110,11 @@ test.describe("Mobile Color Picker", () => {
     const colorPickerDialog = page.getByRole("dialog");
     await expect(colorPickerDialog).toBeVisible();
 
-    // Click on the backdrop (the semi-transparent overlay)
-    // The backdrop is the first child div with bg-black/50
-    await page.locator(".bg-black\\/50").click();
+    // Click on the backdrop (the semi-transparent overlay above the modal)
+    // The modal is bottom-docked (items-end), so click in the top area
+    // where only the backdrop exists — the canvas inside the modal intercepts
+    // clicks in the lower half
+    await page.locator(".bg-black\\/50").click({ position: { x: 10, y: 10 } });
 
     // Modal should be closed
     await expect(colorPickerDialog).not.toBeVisible();
