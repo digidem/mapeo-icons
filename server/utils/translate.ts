@@ -16,6 +16,6 @@ export default async function translateTerm(
     return searchTerm;
   }
 
-  const result = await bingTranslate(searchTerm, locale, "en", true);
+  const result = await bingTranslate(searchTerm, locale, "en", false);
   return result.translation ?? searchTerm;
 }

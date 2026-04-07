@@ -33,7 +33,7 @@ async function copyCssTreeData(nitro) {
   try {
     entries = await readdir(nitroNodeModulesDir);
   } catch {
-    nitro.logger?.warn?.(
+    nitro.logger?.debug?.(
       "[css-tree-patch] Nitro output not found. Skipping css-tree data copy.",
     );
     return;
@@ -146,6 +146,12 @@ export default defineNuxtConfig({
       redirectOn: "root",
     },
     restructureDir: ".",
+  },
+
+  vite: {
+    optimizeDeps: {
+      include: ["@vue/devtools-core", "@vue/devtools-kit"],
+    },
   },
 
   devtools: { enabled: true },
