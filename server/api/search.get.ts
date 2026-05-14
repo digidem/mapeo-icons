@@ -20,6 +20,9 @@ export default defineEventHandler(async (event) => {
     const data = await iconSearch(fallbackSearch, sanitizedLocale, pagination, {
       nounKey: process.env.NOUN_KEY || "",
       nounSecret: process.env.NOUN_SECRET || "",
+      providerOrder: process.env.ICON_PROVIDER_ORDER,
+      iconifyApiBaseUrl: process.env.ICONIFY_API_BASE_URL,
+      iconifyPrefixes: process.env.ICONIFY_PREFIXES,
       limit,
     });
     return data;
