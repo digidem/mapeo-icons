@@ -24,9 +24,6 @@
     "*.**": "prettier --check --ignore-unknown"
   },
   "overrides": {
-    "@nuxtjs/eslint-config-typescript": {
-      "eslint": "$eslint"
-    },
     "stylelint-config-prettier": {
       "stylelint": "$stylelint"
     },
@@ -45,15 +42,13 @@
     "svgo": "^4.0.1"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.28.6",
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.5.0",
-    "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@playwright/test": "^1.60.0",
     "@typescript-eslint/eslint-plugin": "^8.59.3",
     "@typescript-eslint/parser": "^8.59.3",
-    "eslint": "^9.39.4",
+    "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-vue": "^10.9.1",
