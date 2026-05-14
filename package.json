@@ -39,7 +39,7 @@
     "@nuxtjs/i18n": "^10.2.4",
     "bing-translate-api": "^4.2.0",
     "mini-svg-data-uri": "^1.4.4",
-    "nuxt": "^4.4.2",
+    "nuxt": "^4.4.5",
     "oauth": "^0.10.2",
     "potrace": "^2.1.8",
     "svgo": "^4.0.1"
@@ -60,9 +60,9 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "postcss-html": "^1.8.1",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.3",
     "sass-embedded": "^1.99.0",
-    "stylelint": "^17.6.0",
+    "stylelint": "^17.11.1",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-recommended-vue": "^1.6.1",
     "stylelint-config-standard": "^40.0.0"
