@@ -1,14 +1,16 @@
 # CoMapeo Icons
 
-A Nuxt 4 application for discovering and generating colour-adjusted icon assets that can be dropped straight into [CoMapeo](https://comapeo.app/) or [Mapeo](https://mapeo.app) configurations. The app wraps The Noun Project API, provides on-the-fly translations, and exports ready-to-use SVG data URIs.
+A Nuxt 4 application for discovering and generating colour-adjusted icon assets that can be dropped straight into [CoMapeo](https://comapeo.app/) or [Mapeo](https://mapeo.app) configurations. The app searches Iconify by default, can fall back to The Noun Project API, provides on-the-fly translations, and exports ready-to-use SVG data URIs.
 
 ## Getting Started
 
-1. Duplicate the example environment file and add your credentials for The Noun Project API:
+1. Duplicate the example environment file:
 
    ```bash
    cp .env.example .env
    ```
+
+   Iconify works without credentials. Add The Noun Project credentials only if you want Noun as a fallback provider.
 
 2. Install dependencies and launch the development server:
 
@@ -31,11 +33,14 @@ A Nuxt 4 application for discovering and generating colour-adjusted icon assets 
 
 ## Environment
 
-The application expects the following variables in `.env`:
+The application supports the following variables in `.env`:
 
-- `NOUN_KEY` – The Noun Project consumer key
-- `NOUN_SECRET` – The Noun Project consumer secret
-- `ICONS_TO_DOWNLOAD` _(optional)_ – number of icons to fetch per request
+- `ICON_PROVIDER_ORDER` _(optional)_ – comma-separated provider order; defaults to `iconify,noun`
+- `ICONIFY_API_BASE_URL` _(optional)_ – Iconify API base URL; defaults to `https://api.iconify.design`
+- `ICONIFY_PREFIXES` _(optional)_ – comma-separated Iconify collections searched by default
+- `NOUN_KEY` _(optional)_ – The Noun Project consumer key, required only when using the Noun provider
+- `NOUN_SECRET` _(optional)_ – The Noun Project consumer secret, required only when using the Noun provider
+- `ICONS_TO_DOWNLOAD` _(optional)_ – number of icons to fetch per request; Iconify enforces a minimum search limit of 32
 
 Restart the dev server whenever you update these values.
 
