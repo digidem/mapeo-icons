@@ -195,8 +195,13 @@ const getContrastTextClass = (hex: string) => {
 
 const colorTextClass = computed(() => getContrastTextClass(colorHex.value));
 
+const generateParams = new URLSearchParams({
+  image: imageUrl,
+  color: color.value,
+});
+
 const { data: generatedData } = await useFetch(
-  `/api/generate?image=${imageUrl}&color=${color.value}`,
+  `/api/generate?${generateParams.toString()}`,
 );
 
 onMounted(() => {

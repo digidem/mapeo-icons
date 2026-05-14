@@ -14,13 +14,19 @@ export default defineEventHandler(async (event) => {
 
   try {
     const normalizedColor = color.startsWith("#") ? color : `#${color}`;
-    const svg = await generateMapeoIcon(image, normalizedColor);
+    const svg = await generateMapeoIcon(image, normalizedColor, {
+      iconifyApiBaseUrl: process.env.ICONIFY_API_BASE_URL,
+    });
     return [{ svg }];
   } catch (err: any) {
     console.error(err);
+    const message = err?.message ?? "Generation failed";
+    const isBadRequest =
+      message.startsWith("Unsupported image host") || message === "Invalid URL";
+
     throw createError({
-      statusCode: 500,
-      statusMessage: err?.message ?? "Generation failed",
+      statusCode: isBadRequest ? 400 : 500,
+      statusMessage: message,
     });
   }
 });

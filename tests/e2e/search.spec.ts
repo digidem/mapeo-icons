@@ -6,6 +6,7 @@ const mockIconUrls = [
   "https://static.thenounproject.com/png/2-200.png",
   "https://static.thenounproject.com/png/3-200.png",
 ];
+const mockIconifyIconUrl = "https://api.iconify.design/maki/school.svg";
 
 test.describe("Icon Search Functionality", () => {
   test('should search for "cachorro" in Portuguese and load icons', async ({
@@ -166,5 +167,41 @@ test.describe("Icon Search Functionality", () => {
       "placeholder",
       /Entrez un ou plusieurs/i,
     );
+  });
+
+  test("should pass Iconify SVG URLs to icon generation", async ({ page }) => {
+    let generateRequestUrl = "";
+
+    await page.route("**/api/search**", async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify([mockIconifyIconUrl]),
+      });
+    });
+    await page.route("**/api/generate**", async (route) => {
+      generateRequestUrl = route.request().url();
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify([
+          {
+            svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E",
+          },
+        ]),
+      });
+    });
+
+    await page.goto("/images?s=school&l=en", { waitUntil: "networkidle" });
+    await expect(
+      page.locator(`img[src="${mockIconifyIconUrl}"]`),
+    ).toBeVisible();
+
+    await page.getByRole("button", { name: /generate/i }).click();
+    await page.waitForURL("**/result**");
+    await expect(page.locator('a[download="school.svg"] img')).toBeVisible();
+
+    const generateUrl = new URL(generateRequestUrl);
+    expect(generateUrl.searchParams.get("image")).toBe(mockIconifyIconUrl);
   });
 });
