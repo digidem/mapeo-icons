@@ -3,6 +3,9 @@
   "version": "2.1.1",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -42,8 +45,8 @@
     "svgo": "^4.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.5.0",
-    "@commitlint/config-conventional": "^20.5.0",
+    "@commitlint/cli": "^21.0.1",
+    "@commitlint/config-conventional": "^21.0.1",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@playwright/test": "^1.60.0",
     "@typescript-eslint/eslint-plugin": "^8.59.3",
@@ -53,7 +56,7 @@
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-vue": "^10.9.1",
     "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
+    "lint-staged": "^17.0.4",
     "postcss-html": "^1.8.1",
     "prettier": "^3.8.3",
     "sass-embedded": "^1.99.0",
