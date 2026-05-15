@@ -94,7 +94,14 @@ async function fetchFromNounProject(
   return new Promise((resolve, reject) => {
     client.get(url, null, null, (error, data) => {
       if (error) {
-        reject(error);
+        const message =
+          typeof error === "object"
+            ? error.message ||
+              (error.statusCode
+                ? `HTTP ${error.statusCode}: ${JSON.stringify(error.data || error)}`
+                : JSON.stringify(error))
+            : String(error);
+        reject(new Error(`Noun Project API error: ${message}`));
         return;
       }
 
@@ -207,7 +214,12 @@ export default async function iconSearch(
         return results;
       }
     } catch (error: any) {
-      const message = error?.message ?? String(error);
+      const message =
+        error instanceof Error
+          ? error.message
+          : typeof error === "object"
+            ? JSON.stringify(error)
+            : String(error);
       console.error(`${provider} icon search failed:`, message);
       errors.push(`${provider}: ${message}`);
     }
