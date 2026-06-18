@@ -3,7 +3,7 @@ name: Playwright Tests
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       # Application code
       - api/**
@@ -27,7 +27,7 @@ on:
       - .github/workflows/test.yml
   pull_request:
     branches:
-      - master
+      - main
     types: [opened, synchronize, reopened]
   # Allow manual trigger
   workflow_dispatch:

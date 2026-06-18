@@ -11,7 +11,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Override with Tailwind v2 color palette to match origin/master Windi CSS colors
+        // Override with Tailwind v2 color palette to match origin/main Windi CSS colors
         green: {
           400: "#6ee7b7", // v2.x: rgb(110 231 183) instead of v3.x: #4ade80
         },
