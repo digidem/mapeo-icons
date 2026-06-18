@@ -35,3 +35,12 @@
 
 - Duplicate `.env.example` to `.env`, then add The Noun Project API credentials and any downstream endpoints; keep secrets out of git.
 - Restart the dev server after updating env vars so Nuxt refreshes runtime config, and scrub tests of real access tokens.
+
+<!-- caveman-directive -->
+
+Terse like caveman. Technical substance exact. Only fluff die.
+Drop: articles, filler (just/really/basically), pleasantries, hedging.
+Fragments OK. Short synonyms. Code unchanged.
+Pattern: [thing] [action] [reason]. [next step].
+ACTIVE EVERY RESPONSE. No revert after many turns. No filler drift.
+Code/commits/PRs: normal. Off: "stop caveman" @[/] "normal mode".

@@ -10,7 +10,12 @@ type IconifySearchApiResponse = {
 };
 
 const API_BASE_URL = "https://api.thenounproject.com/icons";
-const DEFAULT_PROVIDER_ORDER = ["iconify", "noun"] as const;
+const NOUN_SEARCH_URL = "https://thenounproject.com/search/icons/";
+const NOUN_STATIC_PNG_REGEX =
+  /https:\/\/static\.thenounproject\.com\/png\/\d+-\d+\.png/g;
+const SCRAPE_USER_AGENT =
+  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
+const DEFAULT_PROVIDER_ORDER = ["noun", "iconify"] as const;
 const DEFAULT_ICONIFY_API_BASE_URL = "https://api.iconify.design";
 const DEFAULT_ICONIFY_PREFIXES = [
   "maki",
@@ -94,7 +99,14 @@ async function fetchFromNounProject(
   return new Promise((resolve, reject) => {
     client.get(url, null, null, (error, data) => {
       if (error) {
-        reject(error);
+        const message =
+          typeof error === "object"
+            ? error.message ||
+              (error.statusCode
+                ? `HTTP ${error.statusCode}: ${JSON.stringify(error.data || error)}`
+                : JSON.stringify(error))
+            : String(error);
+        reject(new Error(`Noun Project API error: ${message}`));
         return;
       }
 
@@ -152,7 +164,37 @@ async function searchIconify(
     .filter((url) => url.length > 0);
 }
 
-async function searchNounProject(
+async function scrapeNounProject(
+  searchableTerm: string,
+  pagination: number,
+  options: IconSearchOptions,
+): Promise<string[]> {
+  const limit = resolveLimit(options.limit);
+  const requestUrl = new URL(NOUN_SEARCH_URL);
+  requestUrl.searchParams.set("q", searchableTerm);
+  requestUrl.searchParams.set("page", String(pagination));
+
+  const response = await fetch(requestUrl, {
+    headers: {
+      "User-Agent": SCRAPE_USER_AGENT,
+      Accept: "text/html",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `Noun Project search page failed with status ${response.status}`,
+    );
+  }
+
+  const html = await response.text();
+  const matches = html.match(NOUN_STATIC_PNG_REGEX) ?? [];
+  const deduped = Array.from(new Set(matches));
+
+  return deduped.slice(0, limit);
+}
+
+async function searchNounProjectApi(
   searchableTerm: string,
   pagination: number,
   options: IconSearchOptions,
@@ -172,6 +214,33 @@ async function searchNounProject(
   return icons
     .map((icon) => icon?.preview_url)
     .filter((url): url is string => typeof url === "string" && url.length > 0);
+}
+
+async function searchNounProject(
+  searchableTerm: string,
+  pagination: number,
+  options: IconSearchOptions,
+): Promise<string[]> {
+  try {
+    const results = await scrapeNounProject(
+      searchableTerm,
+      pagination,
+      options,
+    );
+
+    if (results.length > 0) {
+      return results;
+    }
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Noun Project scrape failed:", message);
+  }
+
+  if (options.nounKey && options.nounSecret) {
+    return searchNounProjectApi(searchableTerm, pagination, options);
+  }
+
+  return [];
 }
 
 export default async function iconSearch(
@@ -207,7 +276,12 @@ export default async function iconSearch(
         return results;
       }
     } catch (error: any) {
-      const message = error?.message ?? String(error);
+      const message =
+        error instanceof Error
+          ? error.message
+          : typeof error === "object"
+            ? JSON.stringify(error)
+            : String(error);
       console.error(`${provider} icon search failed:`, message);
       errors.push(`${provider}: ${message}`);
     }

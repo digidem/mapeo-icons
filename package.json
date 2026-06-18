@@ -1,8 +1,11 @@
 {
   "name": "mapeo-icons",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -24,9 +27,6 @@
     "*.**": "prettier --check --ignore-unknown"
   },
   "overrides": {
-    "@nuxtjs/eslint-config-typescript": {
-      "eslint": "$eslint"
-    },
     "stylelint-config-prettier": {
       "stylelint": "$stylelint"
     },
@@ -36,33 +36,31 @@
   },
   "dependencies": {
     "@caohenghu/vue-colorpicker": "^1.2.4",
-    "@nuxtjs/i18n": "^10.2.4",
+    "@nuxtjs/i18n": "^10.3.0",
     "bing-translate-api": "^4.2.0",
     "mini-svg-data-uri": "^1.4.4",
-    "nuxt": "^4.4.2",
+    "nuxt": "^4.4.5",
     "oauth": "^0.10.2",
     "potrace": "^2.1.8",
     "svgo": "^4.0.1"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.28.6",
-    "@commitlint/cli": "^20.5.0",
-    "@commitlint/config-conventional": "^20.5.0",
-    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@commitlint/cli": "^21.0.1",
+    "@commitlint/config-conventional": "^21.0.1",
     "@nuxtjs/tailwindcss": "^6.14.0",
-    "@playwright/test": "^1.59.1",
-    "@typescript-eslint/eslint-plugin": "^8.58.0",
-    "@typescript-eslint/parser": "^8.58.0",
-    "eslint": "^9.39.4",
+    "@playwright/test": "^1.60.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.3",
+    "@typescript-eslint/parser": "^8.59.3",
+    "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-nuxt": "^4.0.0",
-    "eslint-plugin-vue": "^10.8.0",
+    "eslint-plugin-vue": "^10.9.1",
     "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
+    "lint-staged": "^17.0.4",
     "postcss-html": "^1.8.1",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.3",
     "sass-embedded": "^1.99.0",
-    "stylelint": "^17.6.0",
+    "stylelint": "^17.11.1",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-recommended-vue": "^1.6.1",
     "stylelint-config-standard": "^40.0.0"
