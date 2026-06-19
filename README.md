@@ -103,18 +103,18 @@ The app searches across multiple icon providers (Iconify, The Noun Project), aut
 <div align="center">
   <table>
     <tr>
-      <td align="center"><b>Search Home</b></td>
+      <td align="center"><b>Search Results</b></td>
       <td align="center"><b>Icon Selection + Color Picker</b></td>
     </tr>
     <tr>
-      <td><img src="tests/e2e/screenshots/cachorro-search.png" alt="Search results for 'cachorro' (dog in Portuguese)" width="400" /></td>
-      <td><img src="tests/e2e/screenshots/color-change-preview.png" alt="Color picker changing icon color" width="400" /></td>
+      <td><img src="public/screenshots/search-results.webp" alt="Search results for icons" width="400" /></td>
+      <td><img src="public/screenshots/color-picker.webp" alt="Color picker changing icon color" width="400" /></td>
     </tr>
     <tr>
       <td align="center" colspan="2"><b>Mobile Color Picker</b></td>
     </tr>
     <tr>
-      <td align="center" colspan="2"><img src="tests/e2e/screenshots/colorpicker-inspection.png" alt="Mobile color picker inspection" width="300" /></td>
+      <td align="center" colspan="2"><img src="public/screenshots/mobile-color-picker.webp" alt="Mobile color picker modal" width="300" /></td>
     </tr>
   </table>
 </div>
